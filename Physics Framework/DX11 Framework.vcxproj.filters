@@ -20,6 +20,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="OBJLoader.h" />
     <ClInclude Include="Structures.h" />
+    <ClInclude Include="Debug.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
@@ -28,6 +29,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="OBJLoader.cpp" />
+    <ClCompile Include="Debug.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">

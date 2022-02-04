@@ -3,6 +3,7 @@
 #include <directxmath.h>
 #include <d3d11_1.h>
 #include <string>
+#include "Debug.h"
 
 using namespace DirectX;
 using namespace std;
