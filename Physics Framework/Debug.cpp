@@ -2,14 +2,14 @@
 
 void Debug::LogVal(int value)
 {
-	char size[1024] = { 0 };
+	char size[256] = { 0 };
 	sprintf_s(size, "%d \n", value);
 	OutputDebugStringA(size);
 }
 
 void Debug::LogVal(float value)
 {
-	char size[1024] = { 0 };
+	char size[256] = { 0 };
 	sprintf_s(size, "%f \n", value);
 	OutputDebugStringA(size);
 }
