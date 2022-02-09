@@ -1,32 +1,19 @@
 #pragma once
 #include <iostream>
 #include <windows.h>
-#include "constants.h"
-//compares two real numbers. Returns true if they are equal
-inline bool isEqual(float a, float b)
-{
-    if (fabs(a - b) < 1E-12)
-        return true;
+#include "customMath.h"
 
-    return false;
-}
-
-inline bool isEqual(double a, double b)
-{
-    if (fabs(a - b) < 1E-12)
-        return true;
-
-    return false;
-}
 
 class Vector3D
 {
+public:
     double x;
     double y;
     double z;
 
     Vector3D() :x(0.0), y(0.0), z(0.0) {}
     Vector3D(double p_x, double p_y, double p_z) :x(p_x), y(p_y), z(p_z) {}
+    Vector3D(const Vector3D& vec) :x(vec.x), y(vec.y), z(vec.z) {}
 
     //sets all coordinates to 0
     void Zero() { x = 0.0; y = 0.0; z = 0.0; }
@@ -40,7 +27,11 @@ class Vector3D
     //returns the squared length of the vector (thereby avoiding the sqrt)
     double LengthSq()const;
 
-    void   Normalize();
+
+    //sets the vector as the magnitude 1
+    void Normalize();
+    //returns the vector as magnitude 1
+    Vector3D Normalized()const;
 
     double Dot(const Vector3D& v2)const;
 
@@ -56,26 +47,38 @@ class Vector3D
     //returns the vector that is the reverse of this vector
     Vector3D GetReverse()const;
 
+    //returns a reflected vector based on a normal
     Vector3D Reflect(const Vector3D& surfaceNormal);
 
     //overloaded operators
+    
+    //addition
+    Vector3D operator+(const Vector3D& rhs)const;
     Vector3D& operator+=(const Vector3D& rhs);
-    Vector3D& operator-=(const Vector3D& rhs);
-    Vector3D& operator*(const Vector3D& rhs);
-    Vector3D& operator*=(const Vector3D& rhs);
-    Vector3D& operator*=(const double& rhs);
-    Vector3D& operator/=(const double& rhs);
-    Vector3D operator*(double rhs);
-    Vector3D operator-(const Vector3D& rhs);
-    Vector3D operator+(const Vector3D& rhs);
-    Vector3D operator/(const double& rhs);
 
+    //subtraction
+    Vector3D operator-(const Vector3D& rhs)const;
+    Vector3D& operator-=(const Vector3D& rhs);
+
+    //cross product
+    Vector3D& operator*(const Vector3D& rhs)const;
+    Vector3D& operator*=(const Vector3D& rhs);
+
+    //copy
     Vector3D& operator=(const Vector3D& v2);
 
+    //boolean operators
     bool operator==(const Vector3D& rhs)const;
     bool operator!=(const Vector3D& rhs)const;
 
+    //scale and assign
+    Vector3D& operator/=(const double& scalar);
+    Vector3D& operator*=(const double& scalar);
 };
 
+//scalar operations, non member to allow both sides
+Vector3D operator/(const double& lhs, const Vector3D& rhs);
+Vector3D operator/(const Vector3D& lhs, const double& rhs);
 
-
+Vector3D operator*(const double& lhs, const Vector3D& rhs);
+Vector3D operator*(const Vector3D& lhs, const double& rhs);
