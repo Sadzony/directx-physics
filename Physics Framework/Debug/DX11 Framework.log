@@ -1,7 +1,7 @@
 ﻿  Application.cpp
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(691,21): warning C4244: 'initializing': conversion from 'ULONGLONG' to 'DWORD', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(704,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(714,21): warning C4018: '<': signed/unsigned mismatch
-  Main.cpp
-  Generating Code...
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(180,26): warning C4456: declaration of 'transform' hides previous local declaration
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(158,13): message : see declaration of 'transform'
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(684,21): warning C4244: 'initializing': conversion from 'ULONGLONG' to 'DWORD', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(697,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(707,21): warning C4018: '<': signed/unsigned mismatch
   DX11 Framework.vcxproj -> C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Debug\DX11 Framework.exe

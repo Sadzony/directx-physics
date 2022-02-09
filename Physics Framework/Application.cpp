@@ -155,28 +155,35 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 
 
 	
-	GameObject * gameObject = new GameObject("Floor", ObjectType::Environment, planeGeometry, noSpecMaterial);
-	gameObject->SetPosition(0.0f, 0.0f, 0.0f);
-	gameObject->SetScale(15.0f, 15.0f, 15.0f);
-	gameObject->SetRotation(XMConvertToRadians(90.0f), 0.0f, 0.0f);
-	gameObject->SetTextureRV(_pGroundTextureRV);
-
+	Transform* transform = new Transform();
+	transform->SetPosition(0.0f, 0.0f, 0.0f);
+	transform->SetScale(15.0f, 15.0f, 15.0f);
+	transform->SetRotation(XMConvertToRadians(90.0f), 0.0f, 0.0f);
+	Renderer* renderer = new Renderer(planeGeometry, noSpecMaterial);
+	renderer->SetTextureRV(_pGroundTextureRV);
+	ParticlePhysics* particlePhysics = new ParticlePhysics(transform);
+	GameObject* gameObject = new GameObject("Floor", ObjectType::Environment, transform, renderer, particlePhysics);
 	_gameObjects.push_back(gameObject);
 
-	gameObject = new GameObject("donut", ObjectType::Environment, herculesGeometry, shinyMaterial);
-	gameObject->SetScale(0.5f, 0.5f, 0.5f);
-	gameObject->SetPosition(-4.0f, 0.5f, 10.0f);
-	gameObject->SetTextureRV(_pTextureRV);
+	transform = new Transform();
+	transform->SetScale(0.5f, 0.5f, 0.5f);
+	transform->SetPosition(-4.0f, 0.5f, 10.0f);
+	renderer = new Renderer(herculesGeometry, shinyMaterial);
+	renderer->SetTextureRV(_pTextureRV);
+	particlePhysics = new ParticlePhysics(transform);
+	gameObject = new GameObject("donut", ObjectType::Environment, transform, renderer, particlePhysics);
 	_gameObjects.push_back(gameObject);
 
 	for (int i = 0; i < NUMBER_OF_CUBES; i++)
 	{
 		
-		gameObject = new GameObject("Cube" + to_string(i), ObjectType::Cube, cubeGeometry, shinyMaterial);
-		gameObject->SetScale(0.5f, 0.5f, 0.5f);
-		gameObject->SetPosition(-4.0f + (i * 2.0f), 0.5f, 10.0f);
-		gameObject->SetTextureRV(_pTextureRV);
-
+		Transform* transform = new Transform();
+		transform->SetScale(0.5f, 0.5f, 0.5f);
+		transform->SetPosition(-4.0f + (i * 2.0f), 0.5f, 10.0f);
+		renderer = new Renderer(cubeGeometry, shinyMaterial);
+		renderer->SetTextureRV(_pTextureRV);
+		particlePhysics = new ParticlePhysics(transform);
+		gameObject = new GameObject("Cube" + to_string(i), ObjectType::Cube, transform, renderer, particlePhysics);
 		_gameObjects.push_back(gameObject);
 	}
 
@@ -667,20 +674,6 @@ void Application::Cleanup()
 	}
 }
 
-void Application::moveForward(int objectNumber)
-{
-	Vector3D position = _gameObjects[objectNumber]->GetPosition();
-	position.z -= 0.02f;
-	_gameObjects[objectNumber]->SetPosition(position);
-}
-
-void Application::moveBackward(int objectNumber)
-{
-	Vector3D position = _gameObjects[objectNumber]->GetPosition();
-	position.z += 0.02f;
-	_gameObjects[objectNumber]->SetPosition(position);
-}
-
 void Application::Update()
 {
 
@@ -705,7 +698,7 @@ void Application::Update()
 		{
 			if (_gameObjects[i]->GetType() == ObjectType::Cube)
 			{
-				moveForward(i);
+				_gameObjects[i]->GetParticlePhysics()->moveDirection(Vector3D(0, 0, 1));
 			}
 		}
 	}
@@ -715,7 +708,7 @@ void Application::Update()
 		{
 			if (_gameObjects[i]->GetType() == ObjectType::Cube)
 			{
-				moveBackward(i);
+				_gameObjects[i]->GetParticlePhysics()->moveDirection(Vector3D(0, 0, -1));
 			}
 		}
 	}
@@ -782,7 +775,7 @@ void Application::Draw()
 	for (auto gameObject : _gameObjects)
 	{
 		// Get render material
-		Material material = gameObject->GetMaterial();
+		Material material = gameObject->GetRenderer()->GetMaterial();
 
 		// Copy material to shader
 		cb.surface.AmbientMtrl = material.ambient;
@@ -790,12 +783,12 @@ void Application::Draw()
 		cb.surface.SpecularMtrl = material.specular;
 
 		// Set world matrix
-		cb.World = XMMatrixTranspose(gameObject->GetWorldMatrix());
+		cb.World = XMMatrixTranspose(gameObject->GetTransform()->GetWorldMatrix());
 
 		// Set texture
-		if (gameObject->HasTexture())
+		if (gameObject->GetRenderer()->HasTexture())
 		{
-			ID3D11ShaderResourceView * textureRV = gameObject->GetTextureRV();
+			ID3D11ShaderResourceView * textureRV = gameObject->GetRenderer()->GetTextureRV();
 			_pImmediateContext->PSSetShaderResources(0, 1, &textureRV);
 			cb.HasTexture = 1.0f;
 		}
