@@ -64,21 +64,18 @@ public:
     Vector3D& operator*(const Vector3D& rhs)const;
     Vector3D& operator*=(const Vector3D& rhs);
 
-    //copy
-    Vector3D& operator=(const Vector3D& v2);
-
     //boolean operators
     bool operator==(const Vector3D& rhs)const;
     bool operator!=(const Vector3D& rhs)const;
 
-    //scale and assign
+    //scalars
+    Vector3D operator/(const double& rhs)const;
     Vector3D& operator/=(const double& scalar);
     Vector3D& operator*=(const double& scalar);
 };
 
 //scalar operations, non member to allow both sides
-Vector3D operator/(const double& lhs, const Vector3D& rhs);
-Vector3D operator/(const Vector3D& lhs, const double& rhs);
+
 
 Vector3D operator*(const double& lhs, const Vector3D& rhs);
 Vector3D operator*(const Vector3D& lhs, const double& rhs);

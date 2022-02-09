@@ -12,10 +12,15 @@
     <Filter Include="Resource Files\Textures">
       <UniqueIdentifier>{84a4d56f-682d-4b12-a7c9-064cc08bce09}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{1cc31446-f655-43f6-9c78-8690f01a56a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Components">
+      <UniqueIdentifier>{d9047f6b-bbeb-4e91-bac0-8ad6a1f8f226}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
-    <ClInclude Include="GameObject.h" />
     <ClInclude Include="DDSTextureLoader.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="OBJLoader.h" />
@@ -23,16 +28,40 @@
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Vector3D.h" />
     <ClInclude Include="customMath.h" />
+    <ClInclude Include="AppConstants.h" />
+    <ClInclude Include="GameObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticlePhysics.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
-    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="DDSTextureLoader.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="OBJLoader.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Vector3D.cpp" />
+    <ClCompile Include="GameObject.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticlePhysics.cpp">
+      <Filter>GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>GameObject\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">

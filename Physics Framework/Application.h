@@ -10,6 +10,8 @@
 #include "Camera.h"
 #include "Structures.h"
 #include "OBJLoader.h"
+#include "Vector3D.h"
+#include "AppConstants.h"
 
 #include <vector>
 /*
@@ -114,6 +116,7 @@ private:
 	float _cameraOrbitRadiusMax = 50.0f;
 	float _cameraOrbitAngleXZ = -90.0f;
 	float _cameraSpeed = 2.0f;
+	const float fpsConst = 1.0 / FRAMERATE_LIMIT;
 
 	UINT _WindowHeight;
 	UINT _WindowWidth;

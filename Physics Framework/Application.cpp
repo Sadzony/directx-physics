@@ -155,7 +155,7 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 
 
 	
-	GameObject * gameObject = new GameObject("Floor", planeGeometry, noSpecMaterial);
+	GameObject * gameObject = new GameObject("Floor", ObjectType::Environment, planeGeometry, noSpecMaterial);
 	gameObject->SetPosition(0.0f, 0.0f, 0.0f);
 	gameObject->SetScale(15.0f, 15.0f, 15.0f);
 	gameObject->SetRotation(XMConvertToRadians(90.0f), 0.0f, 0.0f);
@@ -163,20 +163,23 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 
 	_gameObjects.push_back(gameObject);
 
-	for (auto i = 0; i < 5; i++)
+	gameObject = new GameObject("donut", ObjectType::Environment, herculesGeometry, shinyMaterial);
+	gameObject->SetScale(0.5f, 0.5f, 0.5f);
+	gameObject->SetPosition(-4.0f, 0.5f, 10.0f);
+	gameObject->SetTextureRV(_pTextureRV);
+	_gameObjects.push_back(gameObject);
+
+	for (int i = 0; i < NUMBER_OF_CUBES; i++)
 	{
-		gameObject = new GameObject("Cube " + i, cubeGeometry, shinyMaterial);
+		
+		gameObject = new GameObject("Cube" + to_string(i), ObjectType::Cube, cubeGeometry, shinyMaterial);
 		gameObject->SetScale(0.5f, 0.5f, 0.5f);
 		gameObject->SetPosition(-4.0f + (i * 2.0f), 0.5f, 10.0f);
 		gameObject->SetTextureRV(_pTextureRV);
 
 		_gameObjects.push_back(gameObject);
 	}
-	gameObject = new GameObject("donut", herculesGeometry, shinyMaterial);
-	gameObject->SetScale(0.5f, 0.5f, 0.5f);
-	gameObject->SetPosition(-4.0f, 0.5f, 10.0f);
-	gameObject->SetTextureRV(_pTextureRV);
-	_gameObjects.push_back(gameObject);
+
 	return S_OK;
 }
 
@@ -666,22 +669,23 @@ void Application::Cleanup()
 
 void Application::moveForward(int objectNumber)
 {
-	XMFLOAT3 position = _gameObjects[objectNumber]->GetPosition();
+	Vector3D position = _gameObjects[objectNumber]->GetPosition();
 	position.z -= 0.02f;
 	_gameObjects[objectNumber]->SetPosition(position);
 }
 
 void Application::moveBackward(int objectNumber)
 {
-	XMFLOAT3 position = _gameObjects[objectNumber-2]->GetPosition();
+	Vector3D position = _gameObjects[objectNumber]->GetPosition();
 	position.z += 0.02f;
-	_gameObjects[objectNumber-2]->SetPosition(position);
+	_gameObjects[objectNumber]->SetPosition(position);
 }
 
 void Application::Update()
 {
+
     // Update our time
-    static float timeSinceStart = 0.0f;
+    static float deltaTime = 0.0f;
     static DWORD dwTimeStart = 0;
 
     DWORD dwTimeCur = GetTickCount64();
@@ -689,25 +693,31 @@ void Application::Update()
     if (dwTimeStart == 0)
         dwTimeStart = dwTimeCur;
 
-	timeSinceStart = (dwTimeCur - dwTimeStart) / 1000.0f;
+	deltaTime += (dwTimeCur - dwTimeStart) / 1000.0f;
+	if (deltaTime < fpsConst) {
+		return;
+	}
 
-	// Move gameobject
+	// Move cubes
 	if (GetAsyncKeyState('1'))
 	{
-		moveForward(1);
+		for (int i = 0; i < _gameObjects.size(); i++)
+		{
+			if (_gameObjects[i]->GetType() == ObjectType::Cube)
+			{
+				moveForward(i);
+			}
+		}
 	}
 	if (GetAsyncKeyState('2'))
 	{
-		moveForward(2);
-	}
-
-	if (GetAsyncKeyState('3'))
-	{
-		moveBackward(3);
-	}
-	if (GetAsyncKeyState('4'))
-	{
-		moveBackward(4);
+		for (int i = 0; i < _gameObjects.size(); i++)
+		{
+			if (_gameObjects[i]->GetType() == ObjectType::Cube)
+			{
+				moveBackward(i);
+			}
+		}
 	}
 	// Update camera
 	float angleAroundZ = XMConvertToRadians(_cameraOrbitAngleXZ);
@@ -721,12 +731,14 @@ void Application::Update()
 
 	_camera->SetPosition(cameraPos);
 	_camera->Update();
-
 	// Update objects
 	for (auto gameObject : _gameObjects)
 	{
-		gameObject->Update(timeSinceStart);
+		gameObject->Update(deltaTime);
 	}
+
+	dwTimeStart = dwTimeCur;
+	deltaTime = deltaTime - fpsConst;
 }
 
 void Application::Draw()

@@ -1,3 +1,7 @@
-﻿  GameObject.cpp
-C:\Users\s011308k\Documents\directx-physics\Physics Framework\GameObject.cpp(17,31): warning C4100: 't': unreferenced formal parameter
-  DX11 Framework.vcxproj -> C:\Users\s011308k\Documents\directx-physics\Physics Framework\Debug\DX11 Framework.exe
+﻿  Application.cpp
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(691,21): warning C4244: 'initializing': conversion from 'ULONGLONG' to 'DWORD', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(704,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(714,21): warning C4018: '<': signed/unsigned mismatch
+  Main.cpp
+  Generating Code...
+  DX11 Framework.vcxproj -> C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Debug\DX11 Framework.exe

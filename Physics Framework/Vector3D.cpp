@@ -89,75 +89,87 @@ Vector3D Vector3D::Reflect(const Vector3D& normal)
 
 Vector3D Vector3D::operator+(const Vector3D& rhs) const
 {
-	return Vector3D();
+	return Vector3D(x + rhs.x, y + rhs.y, z + rhs.z);
 }
 
 Vector3D& Vector3D::operator+=(const Vector3D& rhs)
 {
-	// TODO: insert return statement here
+	x += rhs.x;
+	y += rhs.y;
+	z += rhs.z;
+
+	return *this;
 }
 
 Vector3D Vector3D::operator-(const Vector3D& rhs) const
 {
-	return Vector3D();
+	return Vector3D(x - rhs.x, y - rhs.y, z - rhs.z);
 }
 
 Vector3D& Vector3D::operator-=(const Vector3D& rhs)
 {
-	// TODO: insert return statement here
+	x -= rhs.x;
+	y -= rhs.y;
+	z -= rhs.z;
+
+	return *this;
 }
 
 Vector3D& Vector3D::operator*(const Vector3D& rhs) const
 {
-	// TODO: insert return statement here
+	return Vector3D(y * rhs.z - z * rhs.y, z * rhs.x - x * rhs.z, x * rhs.y - y * rhs.x);
 }
 
 Vector3D& Vector3D::operator*=(const Vector3D& rhs)
 {
-	// TODO: insert return statement here
-}
+	x = (y * rhs.z - z * rhs.y);
+	y = (z * rhs.x - x * rhs.z);
+	z = (x * rhs.y - y * rhs.x);
 
-Vector3D& Vector3D::operator=(const Vector3D& v2)
-{
-	// TODO: insert return statement here
+	return *this;
 }
 
 bool Vector3D::operator==(const Vector3D& rhs) const
 {
-	return false;
+	return (isEqual(x, rhs.x) && isEqual(y, rhs.y) && isEqual(z, rhs.z));
 }
 
 bool Vector3D::operator!=(const Vector3D& rhs) const
 {
-	return false;
+	return (!isEqual(x, rhs.x) || !isEqual(y, rhs.y) || !isEqual(z, rhs.z));
+}
+
+Vector3D Vector3D::operator/(const double& rhs)const
+{
+	return Vector3D(x/rhs, y/rhs, z/rhs);
 }
 
 Vector3D& Vector3D::operator/=(const double& scalar)
 {
-	// TODO: insert return statement here
+	x /= scalar;
+	y /= scalar;
+	z /= scalar;
+
+	return *this;
 }
 
 Vector3D& Vector3D::operator*=(const double& scalar)
 {
-	// TODO: insert return statement here
+	x *= scalar;
+	y *= scalar;
+	z *= scalar;
+
+	return *this;
 }
 
-Vector3D operator/(const double& lhs, const Vector3D& rhs)
-{
-	return Vector3D();
-}
 
-Vector3D operator/(const Vector3D& lhs, const double& rhs)
-{
-	return Vector3D();
-}
 
 Vector3D operator*(const double& lhs, const Vector3D& rhs)
 {
-	return Vector3D();
+	return Vector3D(rhs.x*lhs, rhs.y*lhs, rhs.z*lhs);
 }
 
 Vector3D operator*(const Vector3D& lhs, const double& rhs)
 {
-	return Vector3D();
+	return Vector3D(lhs.x * rhs, lhs.y * rhs, lhs.z * rhs);
 }

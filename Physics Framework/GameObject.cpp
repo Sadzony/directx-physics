@@ -1,13 +1,13 @@
 #include "GameObject.h"
 
-GameObject::GameObject(string type, Geometry geometry, Material material) : _geometry(geometry), _type(type), _material(material)
+GameObject::GameObject(string name, ObjectType type, Geometry geometry, Material material) : _geometry(geometry), _type(type), _material(material), _name(name)
 {
 	_parent = nullptr;
-	_position = XMFLOAT3();
-	_rotation = XMFLOAT3();
-	_scale = XMFLOAT3(1.0f, 1.0f, 1.0f);
-
 	_textureRV = nullptr;
+	_position = Vector3D();
+	_rotation = Vector3D();
+	_scale = Vector3D(1.0f, 1.0f, 1.0f);
+	_world = XMFLOAT4X4();
 }
 
 GameObject::~GameObject()
@@ -16,6 +16,9 @@ GameObject::~GameObject()
 
 void GameObject::Update(float t)
 {
+	if (_type == ObjectType::Cube) {
+		Debug::LogVal(t);
+	}
 	// Calculate world matrix
 	XMMATRIX scale = XMMatrixScaling(_scale.x, _scale.y, _scale.z);
 	XMMATRIX rotation = XMMatrixRotationX(_rotation.x) * XMMatrixRotationY(_rotation.y) * XMMatrixRotationZ(_rotation.z);
