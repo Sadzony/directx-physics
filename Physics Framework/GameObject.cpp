@@ -10,10 +10,7 @@ GameObject::~GameObject()
 
 void GameObject::Update(float t)
 {
-	if (_type == ObjectType::Cube) {
-		Debug::LogVal(t);
-	}
-	_particlePhysics->Update();
+	_particlePhysics->Update(t);
 	_transform->Update();
 }
 

@@ -161,7 +161,7 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 	transform->SetRotation(XMConvertToRadians(90.0f), 0.0f, 0.0f);
 	Renderer* renderer = new Renderer(planeGeometry, noSpecMaterial);
 	renderer->SetTextureRV(_pGroundTextureRV);
-	ParticlePhysics* particlePhysics = new ParticlePhysics(transform);
+	ParticlePhysics* particlePhysics = new ParticlePhysics(transform, MovementType::stationary);
 	GameObject* gameObject = new GameObject("Floor", ObjectType::Environment, transform, renderer, particlePhysics);
 	_gameObjects.push_back(gameObject);
 
@@ -170,7 +170,7 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 	transform->SetPosition(-4.0f, 0.5f, 10.0f);
 	renderer = new Renderer(herculesGeometry, shinyMaterial);
 	renderer->SetTextureRV(_pTextureRV);
-	particlePhysics = new ParticlePhysics(transform);
+	particlePhysics = new ParticlePhysics(transform, MovementType::stationary);
 	gameObject = new GameObject("donut", ObjectType::Environment, transform, renderer, particlePhysics);
 	_gameObjects.push_back(gameObject);
 
@@ -182,7 +182,7 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 		transform->SetPosition(-4.0f + (i * 2.0f), 0.5f, 10.0f);
 		renderer = new Renderer(cubeGeometry, shinyMaterial);
 		renderer->SetTextureRV(_pTextureRV);
-		particlePhysics = new ParticlePhysics(transform);
+		particlePhysics = new ParticlePhysics(transform, MovementType::accelerating);
 		gameObject = new GameObject("Cube" + to_string(i), ObjectType::Cube, transform, renderer, particlePhysics);
 		_gameObjects.push_back(gameObject);
 	}
@@ -692,6 +692,7 @@ void Application::Update()
 	}
 
 	// Move cubes
+
 	if (GetAsyncKeyState('1'))
 	{
 		for (int i = 0; i < _gameObjects.size(); i++)
@@ -711,6 +712,32 @@ void Application::Update()
 				_gameObjects[i]->GetParticlePhysics()->moveDirection(Vector3D(0, 0, -1));
 			}
 		}
+	}
+	if (GetAsyncKeyState(0x56) && !keyPressed)
+	{
+		keyPressed = true;
+		for (int i = 0; i < _gameObjects.size(); i++)
+		{
+			if (_gameObjects[i]->GetType() == ObjectType::Cube)
+			{
+				_gameObjects[i]->GetParticlePhysics()->SetAcceleration(Vector3D(0.1,0,0));
+				_gameObjects[i]->GetParticlePhysics()->ToggleMovement();
+			}
+		}
+	}
+	else if (GetAsyncKeyState(0x43) && !keyPressed) {
+		keyPressed = true;
+		for (int i = 0; i < _gameObjects.size(); i++)
+		{
+			if (_gameObjects[i]->GetType() == ObjectType::Cube)
+			{
+				_gameObjects[i]->GetParticlePhysics()->SetAcceleration(Vector3D(-0.1, 0, 0));
+				_gameObjects[i]->GetParticlePhysics()->ToggleMovement();
+			}
+		}
+	}
+	if (!GetAsyncKeyState(0x56) && !GetAsyncKeyState(0x43)) {
+		keyPressed = false;
 	}
 	// Update camera
 	float angleAroundZ = XMConvertToRadians(_cameraOrbitAngleXZ);

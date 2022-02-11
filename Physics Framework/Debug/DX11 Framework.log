@@ -1,7 +1,10 @@
 ﻿  Application.cpp
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(180,26): warning C4456: declaration of 'transform' hides previous local declaration
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(158,13): message : see declaration of 'transform'
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(684,21): warning C4244: 'initializing': conversion from 'ULONGLONG' to 'DWORD', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(697,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(707,21): warning C4018: '<': signed/unsigned mismatch
-  DX11 Framework.vcxproj -> C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Debug\DX11 Framework.exe
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(180,26): warning C4456: declaration of 'transform' hides previous local declaration
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(158,13): message : see declaration of 'transform'
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(684,21): warning C4244: 'initializing': conversion from 'ULONGLONG' to 'DWORD', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(698,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(708,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(719,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(730,21): warning C4018: '<': signed/unsigned mismatch
+Application.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+  DX11 Framework.vcxproj -> C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Debug\DX11 Framework.exe
