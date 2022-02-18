@@ -2,36 +2,27 @@
 
 
 
-ParticlePhysics::ParticlePhysics(Transform* transform, MovementType pMoveType)
+ParticlePhysics::ParticlePhysics(Transform* transform, float pmass)
 {
+	mass = pmass;
 	_transform = transform;
 	velocity = Vector3D(0,0,0);
-	acceleration = Vector3D(0.1, 0, 0);
-	moveType = pMoveType;
+	acceleration = Vector3D(0, 0, 0);
+	netForce = Vector3D(0, 0, 0);
 	physicsPosition = _transform->GetPosition();
 }
 
 void ParticlePhysics::Update(float t)
 {
-	if (toggle) {
-		if (moveType == accelerating) {
-			moveConstAcceleration(t);
-		}
-		else if (moveType == constant) {
-			moveConstVelocity(t);
-		}
+	UpdateNetForce();
+	UpdateAcceleration();
+	Debug::LogString("Acceleration: ");
+	Debug::LogVal((float)acceleration.x);
+	Debug::LogString("\n");
+	if (AllowMovement) {
+		Move(t);
 	}
 	_transform->SetPosition(physicsPosition);
-}
-
-void ParticlePhysics::moveDirection(Vector3D direction)
-{
-	physicsPosition += direction *0.02f;
-}
-
-void ParticlePhysics::moveConstVelocity(float t)
-{
-	physicsPosition += velocity * t;
 }
 
 void ParticlePhysics::SetVelocity(Vector3D pvelocity)
@@ -44,15 +35,10 @@ Vector3D ParticlePhysics::GetVelocity()
 	return velocity;
 }
 
-void ParticlePhysics::moveConstAcceleration(float t)
+void ParticlePhysics::Move(float t)
 {
 	physicsPosition += velocity * t + (0.5 * acceleration * t*t);
 	velocity += acceleration * t;
-}
-
-void ParticlePhysics::SetAcceleration(Vector3D pacceleration)
-{
-	acceleration = pacceleration;
 }
 
 Vector3D ParticlePhysics::GetAcceleration()
@@ -60,13 +46,36 @@ Vector3D ParticlePhysics::GetAcceleration()
 	return acceleration;
 }
 
-void ParticlePhysics::SetMovementType(MovementType newType)
+void ParticlePhysics::UpdateAcceleration()
 {
-	moveType = newType;
+	acceleration = netForce / mass;
 }
 
-void ParticlePhysics::ToggleMovement()
+void ParticlePhysics::SetMass(float pmass)
 {
-	velocity.Zero();
-	toggle = !toggle;
+	mass = pmass;
+}
+
+float ParticlePhysics::GetMass()
+{
+	return mass;
+}
+
+void ParticlePhysics::AddForce(Vector3D force)
+{
+	externalForces.push_back(force);
+}
+
+Vector3D ParticlePhysics::GetNetForce()
+{
+	return netForce;
+}
+
+void ParticlePhysics::UpdateNetForce()
+{
+	for each (Vector3D force in externalForces)
+	{
+		netForce += force;
+	}
+	externalForces.clear();
 }
