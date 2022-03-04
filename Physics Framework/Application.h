@@ -140,8 +140,6 @@ private:
 	HRESULT InitVertexBuffer();
 	HRESULT InitIndexBuffer();
 
-	bool keyPressed = false;;
-
 public:
 	Application();
 	~Application();

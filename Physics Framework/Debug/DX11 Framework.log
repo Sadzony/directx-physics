@@ -2,6 +2,7 @@
 C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(182,26): warning C4456: declaration of 'transform' hides previous local declaration
 C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(158,13): message : see declaration of 'transform'
 C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(686,21): warning C4244: 'initializing': conversion from 'ULONGLONG' to 'DWORD', possible loss of data
-C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(700,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(710,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(699,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(708,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(717,21): warning C4018: '<': signed/unsigned mismatch
   DX11 Framework.vcxproj -> C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Debug\DX11 Framework.exe

@@ -181,7 +181,7 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 		
 		Transform* transform = new Transform();
 		transform->SetScale(0.5f, 0.5f, 0.5f);
-		transform->SetPosition(-4.0f + (i * 2.0f), 0.5f, 10.0f);
+		transform->SetPosition(-4.0f + (i * 2.0f), 10.0f, 10.0f);
 		renderer = new Renderer(cubeGeometry, shinyMaterial);
 		renderer->SetTextureRV(_pTextureRV);
 		particlePhysics = new ParticlePhysics(transform, 1.0f);
@@ -688,15 +688,14 @@ void Application::Update()
     if (dwTimeStart == 0)
         dwTimeStart = dwTimeCur;
 
-	deltaTime += (dwTimeCur - dwTimeStart) / 1000.0f;
+	deltaTime = (dwTimeCur - dwTimeStart) / 1000.0f;
 	if (deltaTime < fpsConst) {
 		return;
 	}
 
 	// Move cubes
-	if (GetAsyncKeyState('1') && !keyPressed)
+	if (GetAsyncKeyState('1'))
 	{
-		keyPressed = true;
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
 			if (_gameObjects[i]->GetType() == ObjectType::Cube)
@@ -705,8 +704,7 @@ void Application::Update()
 			}
 		}
 	}
-	else if (GetAsyncKeyState('2') && !keyPressed) {
-		keyPressed = true;
+	else if (GetAsyncKeyState('2')) {
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
 			if (_gameObjects[i]->GetType() == ObjectType::Cube)
@@ -715,8 +713,14 @@ void Application::Update()
 			}
 		}
 	}
-	if (!GetAsyncKeyState('1') && !GetAsyncKeyState('2')) {
-		keyPressed = false;
+	if (GetAsyncKeyState(0x54)) {
+		for (int i = 0; i < _gameObjects.size(); i++)
+		{
+			if (_gameObjects[i]->GetType() == ObjectType::Cube)
+			{
+				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(0, THRUST_POWER, 0));
+			}
+		}
 	}
 	// Update camera
 	float angleAroundZ = XMConvertToRadians(_cameraOrbitAngleXZ);
