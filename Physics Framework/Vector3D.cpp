@@ -32,9 +32,9 @@ Vector3D Vector3D::Normalized() const //returns the vector as magnitude 1
 
 	if (!this->isZero())
 	{
-		returnVector.x /= vector_length;
-		returnVector.y /= vector_length;
-		returnVector.z /= vector_length;
+		returnVector.x = this->x / vector_length;
+		returnVector.y = this->y / vector_length;
+		returnVector.z = this->z / vector_length;
 	}
 	else {
 		returnVector.Zero();

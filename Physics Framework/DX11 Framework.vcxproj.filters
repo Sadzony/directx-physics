@@ -41,6 +41,7 @@
     <ClInclude Include="Renderer.h">
       <Filter>GameObject\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Quaternion.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />

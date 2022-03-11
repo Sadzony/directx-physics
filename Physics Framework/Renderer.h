@@ -35,6 +35,7 @@ public:
 	ID3D11ShaderResourceView* GetTextureRV() const { return _textureRV; }
 	bool HasTexture() const { return _textureRV ? true : false; }
 
+
 	void Draw(ID3D11DeviceContext* pImmediateContext);
 };
 

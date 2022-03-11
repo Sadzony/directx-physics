@@ -398,6 +398,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="OBJLoader.h" />
     <ClInclude Include="ParticlePhysics.h" />
+    <ClInclude Include="Quaternion.h" />
     <ClInclude Include="Renderer.h" />
     <CLInclude Include="resource.h" />
     <ClInclude Include="Structures.h" />

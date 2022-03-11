@@ -275,7 +275,7 @@ HRESULT Application::InitVertexBuffer()
 
     // Create vertex buffer
     SimpleVertex vertices[] =
-    {
+    {	
 		{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT2(1.0f, 0.0f) },
 		{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT2(0.0f, 0.0f) },
 		{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT2(0.0f, 1.0f) },
@@ -713,12 +713,25 @@ void Application::Update()
 			}
 		}
 	}
-	if (GetAsyncKeyState(0x54)) {
+	//Thrust upwards
+	if (GetAsyncKeyState(0x54)) { //T Key
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
 			if (_gameObjects[i]->GetType() == ObjectType::Cube)
 			{
 				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(0, THRUST_POWER, 0));
+			}
+		}
+	}
+	//rotate cubes
+	if (GetAsyncKeyState(0x52)) { //R key
+		for (int i = 0; i < _gameObjects.size(); i++)
+		{
+			if (_gameObjects[i]->GetType() == ObjectType::Cube)
+			{
+				Vector3D currentRot = _gameObjects[i]->GetTransform()->GetEulerRotation();
+				currentRot.y += 1.0 * deltaTime;
+				_gameObjects[i]->GetTransform()->SetRotation(currentRot);
 			}
 		}
 	}

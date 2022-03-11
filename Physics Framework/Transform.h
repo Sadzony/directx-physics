@@ -2,13 +2,15 @@
 #include <directxmath.h>
 #include <d3d11_1.h>
 #include "Vector3D.h"
+#include "Quaternion.h"
 
 using namespace DirectX;
 class Transform
 {
 private:
 	Vector3D _position;
-	Vector3D _rotation;
+	Vector3D _eulerRotation;
+	Quaternion _orientation;
 	Vector3D _scale;
 	XMFLOAT4X4 _world;
 	Transform* _parent;
@@ -25,9 +27,13 @@ public:
 	void SetScale(float x, float y, float z) { _scale.x = x; _scale.y = y; _scale.z = z; }
 	Vector3D GetScale() const { return _scale; }
 
-	void SetRotation(Vector3D rotation) { _rotation = rotation; }
-	void SetRotation(float x, float y, float z) { _rotation.x = x; _rotation.y = y; _rotation.z = z; }
-	Vector3D GetRotation() const { return _rotation; }
+	void SetRotation(Vector3D EulerRotation); 
+	void SetRotation(float x, float y, float z) { SetRotation(Vector3D(x, y, z)); }
+
+	void SetOrientation(Quaternion pOrientation) { _orientation = pOrientation; }
+	void SetOrientation(float r, float i, float j, float k) { _orientation.r = r; _orientation.i = i; _orientation.j = j; _orientation.k = k; }
+	Quaternion GetOrientation() const { return _orientation; }
+	Vector3D GetEulerRotation()const { return _eulerRotation; }
 
 	void SetParent(Transform* parent) { _parent = parent; }
 

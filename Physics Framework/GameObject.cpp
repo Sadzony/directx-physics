@@ -18,3 +18,4 @@ void GameObject::Draw(ID3D11DeviceContext * pImmediateContext)
 {
 	_renderer->Draw(pImmediateContext);
 }
+
