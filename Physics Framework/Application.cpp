@@ -123,6 +123,7 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 	objMeshData = OBJLoader::Load("donut.obj", _pd3dDevice);
 	herculesGeometry.indexBuffer = objMeshData.IndexBuffer;
 	herculesGeometry.numberOfIndices = objMeshData.IndexCount;
+	herculesGeometry.centre = Vector3D(objMeshData.centre.x, objMeshData.centre.y, objMeshData.centre.z);
 	herculesGeometry.vertexBuffer = objMeshData.VertexBuffer;
 	herculesGeometry.vertexBufferOffset = objMeshData.VBOffset;
 	herculesGeometry.vertexBufferStride = objMeshData.VBStride;
@@ -131,6 +132,7 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 	cubeGeometry.indexBuffer = _pIndexBuffer;
 	cubeGeometry.vertexBuffer = _pVertexBuffer;
 	cubeGeometry.numberOfIndices = 36;
+	cubeGeometry.centre = Vector3D(_pCentreOfMass.x, _pCentreOfMass.y, _pCentreOfMass.z);
 	cubeGeometry.vertexBufferOffset = 0;
 	cubeGeometry.vertexBufferStride = sizeof(SimpleVertex);
 
@@ -138,6 +140,7 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 	planeGeometry.indexBuffer = _pPlaneIndexBuffer;
 	planeGeometry.vertexBuffer = _pPlaneVertexBuffer;
 	planeGeometry.numberOfIndices = 6;
+	planeGeometry.centre = Vector3D(_pPlaneCentreOfMass.x, _pPlaneCentreOfMass.y, _pPlaneCentreOfMass.z);
 	planeGeometry.vertexBufferOffset = 0;
 	planeGeometry.vertexBufferStride = sizeof(SimpleVertex);
 
@@ -318,6 +321,12 @@ HRESULT Application::InitVertexBuffer()
 	ZeroMemory(&InitData, sizeof(InitData));
     InitData.pSysMem = vertices;
 
+	std::vector<XMFLOAT3> vertexPositions;
+	for (int i = 0; i < 24; ++i) {
+		vertexPositions.push_back(vertices[i].Pos);
+	}
+	_pCentreOfMass = OBJFunction::FindCentreOfMass(vertexPositions, 24);
+
     hr = _pd3dDevice->CreateBuffer(&bd, &InitData, &_pVertexBuffer);
 
     if (FAILED(hr))
@@ -340,6 +349,12 @@ HRESULT Application::InitVertexBuffer()
 
 	ZeroMemory(&InitData, sizeof(InitData));
 	InitData.pSysMem = planeVertices;
+
+	vertexPositions.clear();
+	for (int i = 0; i < 4; ++i) {
+		vertexPositions.push_back(vertices[i].Pos);
+	}
+	_pPlaneCentreOfMass = OBJFunction::FindCentreOfMass(vertexPositions, 4);
 
 	hr = _pd3dDevice->CreateBuffer(&bd, &InitData, &_pPlaneVertexBuffer);
 

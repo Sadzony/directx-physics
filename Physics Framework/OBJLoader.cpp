@@ -62,6 +62,21 @@ void OBJLoader::CreateIndices(const std::vector<XMFLOAT3>& inVertices,
 	}
 }
 
+XMFLOAT3 OBJFunction::FindCentreOfMass(const std::vector<XMFLOAT3>& inVertices, const int numberOfVertices)
+{
+	XMFLOAT3 returnFloat3 = XMFLOAT3(0, 0, 0);
+	XMVECTOR centreVector = XMLoadFloat3(&returnFloat3);
+
+	for (unsigned int i = 0; i < numberOfVertices; ++i) {
+		XMFLOAT3 nextVertex = inVertices[i];
+		XMVECTOR nextVertexVector = XMLoadFloat3(&nextVertex); //add up all vertices together and divide them by the number of vertices
+		centreVector = XMVectorAdd(centreVector, nextVertexVector);
+	}
+	centreVector = XMVectorScale(centreVector, 1.0f / numberOfVertices);
+	XMStoreFloat3(&returnFloat3, centreVector);
+	return returnFloat3;
+}
+
 //WARNING: This code makes a big assumption -- that your models have texture coordinates AND normals which they should have anyway (else you can't do texturing and lighting!)
 //If your .obj file has no lines beginning with "vt" or "vn", then you'll need to change the Export settings in your modelling software so that it exports the texture coordinates 
 //and normals. If you still have no "vt" lines, you'll need to do some texture unwrapping, also known as UV unwrapping.
@@ -201,7 +216,9 @@ MeshData OBJLoader::Load(char* filename, ID3D11Device* _pd3dDevice, bool invertT
 				finalVerts[i].Pos = meshVertices[i];
 				finalVerts[i].Normal = meshNormals[i];
 				finalVerts[i].TexC = meshTexCoords[i];
+
 			}
+			meshData.centre = OBJFunction::FindCentreOfMass(meshVertices, numMeshVertices);
 
 			//Put data into vertex and index buffers, then pass the relevant data to the MeshData object.
 			//The rest of the code will hopefully look familiar to you, as it's similar to whats in your InitVertexBuffer and InitIndexBuffer methods
@@ -276,6 +293,12 @@ MeshData OBJLoader::Load(char* filename, ID3D11Device* _pd3dDevice, bool invertT
 		unsigned short* indices = new unsigned short[numIndices];
 		binaryInFile.read((char*)finalVerts, sizeof(SimpleVertex) * numVertices);
 		binaryInFile.read((char*)indices, sizeof(unsigned short) * numIndices);
+
+		std::vector<XMFLOAT3> vertexPositions;
+		for (int i = 0; i < numVertices; ++i) {
+			vertexPositions.push_back(finalVerts[i].Pos);
+		}
+		meshData.centre = OBJFunction::FindCentreOfMass(vertexPositions, numVertices);
 
 		//Put data into vertex and index buffers, then pass the relevant data to the MeshData object.
 		//The rest of the code will hopefully look familiar to you, as it's similar to whats in your InitVertexBuffer and InitIndexBuffer methods

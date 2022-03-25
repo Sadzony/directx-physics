@@ -87,9 +87,11 @@ private:
 
 	ID3D11Buffer*           _pVertexBuffer;
 	ID3D11Buffer*           _pIndexBuffer;
+	XMFLOAT3				_pCentreOfMass;
 
 	ID3D11Buffer*           _pPlaneVertexBuffer;
 	ID3D11Buffer*           _pPlaneIndexBuffer;
+	XMFLOAT3				_pPlaneCentreOfMass;
 
 	ID3D11Buffer*           _pConstantBuffer;
 

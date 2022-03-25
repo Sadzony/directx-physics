@@ -59,6 +59,9 @@ struct MeshData
 {
 	ID3D11Buffer* VertexBuffer;
 	ID3D11Buffer* IndexBuffer;
+
+	XMFLOAT3 centre;
+
 	UINT VBStride;
 	UINT VBOffset;
 	UINT IndexCount;

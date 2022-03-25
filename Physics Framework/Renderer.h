@@ -1,12 +1,15 @@
 #pragma once
 #include <directxmath.h>
 #include <d3d11_1.h>
+#include "Vector3D.h"
 using namespace DirectX;
 struct Geometry
 {
 	ID3D11Buffer* vertexBuffer;
 	ID3D11Buffer* indexBuffer;
 	int numberOfIndices;
+
+	Vector3D centre;
 
 	UINT vertexBufferStride;
 	UINT vertexBufferOffset;
