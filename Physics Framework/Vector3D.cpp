@@ -42,6 +42,21 @@ Vector3D Vector3D::Normalized() const //returns the vector as magnitude 1
 	return returnVector;
 }
 
+Vector3D Vector3D::CrossProduct(const Vector3D& v2) const
+{
+	Vector3D returnVector;
+	if (this->isZero() || v2.isZero()) {
+		returnVector.Zero();
+	}
+	else {
+		returnVector.x = (y * v2.z) - (z * v2.y);
+		returnVector.y = (z * v2.x) - (x * v2.z);
+		returnVector.z = (x * v2.y) - (y * v2.x);
+	}
+
+	return returnVector;
+}
+
 double Vector3D::Dot(const Vector3D& v2) const //dot product
 {
 	return (x * v2.x) + (y * v2.y) + (z * v2.z);

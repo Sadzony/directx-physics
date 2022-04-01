@@ -2,6 +2,11 @@
 
 GameObject::GameObject(string name, ObjectType type, Transform* transform, Renderer* renderer, ParticlePhysics* particlePhysics) : _name(name), _type(type), _transform(transform), _renderer(renderer), _particlePhysics(particlePhysics)
 {
+
+}
+GameObject::GameObject(string name, ObjectType type, Transform* transform, Renderer* renderer, ParticlePhysics* particlePhysics, Rigidbody* rigidbody) : _name(name), _type(type), _transform(transform), _renderer(renderer), _particlePhysics(particlePhysics), _rigidbody(rigidbody)
+{
+
 }
 
 GameObject::~GameObject()

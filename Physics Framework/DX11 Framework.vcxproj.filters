@@ -42,6 +42,9 @@
       <Filter>GameObject\Components</Filter>
     </ClInclude>
     <ClInclude Include="Quaternion.h" />
+    <ClInclude Include="Rigidbody.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
@@ -61,6 +64,9 @@
       <Filter>GameObject\Components</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
+      <Filter>GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Rigidbody.cpp">
       <Filter>GameObject\Components</Filter>
     </ClCompile>
   </ItemGroup>

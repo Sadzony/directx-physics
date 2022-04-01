@@ -12,6 +12,11 @@ ParticlePhysics::ParticlePhysics(Transform* transform, float pmass)
 	physicsPosition = _transform->GetPosition();
 }
 
+ParticlePhysics::~ParticlePhysics()
+{
+	delete _transform;
+}
+
 void ParticlePhysics::Update(float t)
 {
 	UpdateNetForce();

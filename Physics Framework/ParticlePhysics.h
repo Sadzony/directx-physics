@@ -20,6 +20,7 @@ private:
 
 public:
 	ParticlePhysics(Transform* transform, float pmass);
+	~ParticlePhysics();
 	void Update(float t);
 
 	void SetVelocity(Vector3D pvelocity);

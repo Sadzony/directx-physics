@@ -33,6 +33,8 @@ public:
     //returns the vector as magnitude 1
     Vector3D Normalized()const;
 
+    Vector3D CrossProduct(const Vector3D& v2) const;
+
     double Dot(const Vector3D& v2)const;
 
     //adjusts coordinates so that the length of the vector does not exceed max

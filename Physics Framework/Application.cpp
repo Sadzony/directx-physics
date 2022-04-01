@@ -188,6 +188,7 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 		renderer = new Renderer(cubeGeometry, shinyMaterial);
 		renderer->SetTextureRV(_pTextureRV);
 		particlePhysics = new ParticlePhysics(transform, 1.0f);
+		Rigidbody* rb = new Rigidbody(transform, renderer->GetGeometryData().centre);
 		gameObject = new GameObject("Cube" + to_string(i), ObjectType::Cube, transform, renderer, particlePhysics);
 		_gameObjects.push_back(gameObject);
 	}
