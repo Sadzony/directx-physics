@@ -133,6 +133,8 @@ private:
 	ID3D11RasterizerState* CCWcullMode;
 	ID3D11RasterizerState* CWcullMode;
 
+	bool keyPressed = false;
+
 private:
 	HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow);
 	HRESULT InitDevice();

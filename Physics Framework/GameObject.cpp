@@ -11,11 +11,25 @@ GameObject::GameObject(string name, ObjectType type, Transform* transform, Rende
 
 GameObject::~GameObject()
 {
+	if (_type == ObjectType::Cube) {
+		if (_rigidbody != nullptr) delete _rigidbody;
+	}
+	_rigidbody = nullptr;
+	if (_particlePhysics != nullptr)delete _particlePhysics;
+	_particlePhysics = nullptr;
+	if (_renderer != nullptr)delete _renderer;
+	_renderer = nullptr;
+	if (_transform != nullptr)delete _transform;
+	_transform = nullptr;
 }
 
 void GameObject::Update(float t)
 {
 	_particlePhysics->Update(t);
+	if (_type == ObjectType::Cube) {
+		_rigidbody->Update(t);
+		_transform->SetOrientation(_rigidbody->GetOrientation());
+	}
 	_transform->Update();
 }
 

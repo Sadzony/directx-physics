@@ -8,6 +8,7 @@
 
 //motion
 #define THRUST_POWER 15
+#define ROTATIONAL_POWER 15
 #define GRAVITY_FACTOR -9.81
 
 //drag

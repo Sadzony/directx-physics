@@ -14,7 +14,7 @@ ParticlePhysics::ParticlePhysics(Transform* transform, float pmass)
 
 ParticlePhysics::~ParticlePhysics()
 {
-	delete _transform;
+	_transform = nullptr;
 }
 
 void ParticlePhysics::Update(float t)

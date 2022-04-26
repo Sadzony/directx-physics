@@ -182,14 +182,14 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 	for (int i = 0; i < NUMBER_OF_CUBES; i++)
 	{
 		
-		Transform* transform = new Transform();
+		transform = new Transform();
 		transform->SetScale(0.5f, 0.5f, 0.5f);
 		transform->SetPosition(-4.0f + (i * 2.0f), 10.0f, 10.0f);
 		renderer = new Renderer(cubeGeometry, shinyMaterial);
 		renderer->SetTextureRV(_pTextureRV);
 		particlePhysics = new ParticlePhysics(transform, 1.0f);
-		Rigidbody* rb = new Rigidbody(transform, renderer->GetGeometryData().centre);
-		gameObject = new GameObject("Cube" + to_string(i), ObjectType::Cube, transform, renderer, particlePhysics);
+		Rigidbody* rb = new Rigidbody(transform, particlePhysics, renderer->GetGeometryData().centre, Vector3D(2.0, 2.0, 2.0), 0.1);
+		gameObject = new GameObject("Cube" + to_string(i), ObjectType::Cube, transform, renderer, particlePhysics, rb);
 		_gameObjects.push_back(gameObject);
 	}
 
@@ -646,6 +646,14 @@ HRESULT Application::InitDevice()
 
 void Application::Cleanup()
 {
+	for (auto gameObject : _gameObjects)
+	{
+		if (gameObject)
+		{
+			delete gameObject;
+			gameObject = nullptr;
+		}
+	}
     if (_pImmediateContext) _pImmediateContext->ClearState();
 	if (_pSamplerLinear) _pSamplerLinear->Release();
 
@@ -682,14 +690,7 @@ void Application::Cleanup()
 		_camera = nullptr;
 	}
 
-	for (auto gameObject : _gameObjects)
-	{
-		if (gameObject)
-		{
-			delete gameObject;
-			gameObject = nullptr;
-		}
-	}
+
 }
 
 void Application::Update()
@@ -740,16 +741,17 @@ void Application::Update()
 		}
 	}
 	//rotate cubes
-	if (GetAsyncKeyState(0x52)) { //R key
+	if (GetAsyncKeyState(0x52) && !keyPressed) { //R key
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
 			if (_gameObjects[i]->GetType() == ObjectType::Cube)
 			{
-				Vector3D currentRot = _gameObjects[i]->GetTransform()->GetEulerRotation();
-				currentRot.y += 1.0 * deltaTime;
-				_gameObjects[i]->GetTransform()->SetRotation(currentRot);
+				_gameObjects[i]->GetRigidbody()->AddRotationalForce(Vector3D(0, 0, ROTATIONAL_POWER), Vector3D(0.0, 0.9, 0.9));
 			}
 		}
+	}
+	else if (!GetAsyncKeyState(0x52)) {
+		keyPressed = false;
 	}
 	// Update camera
 	float angleAroundZ = XMConvertToRadians(_cameraOrbitAngleXZ);
