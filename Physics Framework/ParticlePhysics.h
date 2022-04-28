@@ -41,6 +41,7 @@ public:
 	void UpdateNetForce();
 
 	void AddDrag(float dragFactor);
+	void AddComplexDrag(float dragFactor, float fluidDensity, Vector3D fluidVelocity);
 	Vector3D calcLaminarFlow(float dragFactor);
 	Vector3D calcTurbulentFlow(float dragFactor);
 

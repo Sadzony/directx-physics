@@ -1,4 +1,4 @@
-﻿  Rigidbody.cpp
+﻿  Collider.cpp
 C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(145,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
 C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(144,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
 C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(143,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
@@ -11,18 +11,34 @@ C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion
 C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(204,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
 C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(209,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
 C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(214,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Rigidbody.cpp(6,65): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Rigidbody.cpp(7,65): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Rigidbody.cpp(8,65): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Rigidbody.cpp(54,74): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Rigidbody.cpp(54,64): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Rigidbody.cpp(54,54): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Rigidbody.cpp(54): warning C4238: nonstandard extension used: class rvalue used as lvalue
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Rigidbody.cpp(54,47): warning C4238: nonstandard extension used: class rvalue used as lvalue
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Rigidbody.cpp(81,101): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Rigidbody.cpp(81,82): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Rigidbody.cpp(81,63): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Rigidbody.cpp(81): warning C4238: nonstandard extension used: class rvalue used as lvalue
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Rigidbody.cpp(81,47): warning C4238: nonstandard extension used: class rvalue used as lvalue
-Application.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Collider.h(12,36): warning C4100: 'other': unreferenced formal parameter
+  OrientedBoxCollider.cpp
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(145,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(144,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(143,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(155,45): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(155,35): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(155,25): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(191,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(192,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(193,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(204,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(209,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(214,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Collider.h(12,36): warning C4100: 'other': unreferenced formal parameter
+  SphereCollider.cpp
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(145,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(144,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(143,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(155,45): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(155,35): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(155,25): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(191,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(192,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(193,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(204,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(209,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(214,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Collider.h(12,36): warning C4100: 'other': unreferenced formal parameter
+  Generating Code...
   DX11 Framework.vcxproj -> C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Debug\DX11 Framework.exe

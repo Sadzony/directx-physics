@@ -5,7 +5,7 @@ Rigidbody::Rigidbody(Transform* transform, ParticlePhysics* particlePhyics, Vect
 	inertiaTensor = XMFLOAT3X3();
 	inertiaTensor._11 = (1.0f / 12.0f) * particlePhyics->GetMass() * (dimensions.y, + dimensions.z);
 	inertiaTensor._22 = (1.0f / 12.0f) * particlePhyics->GetMass() * (dimensions.x, + dimensions.z);
-	inertiaTensor._33 = (1.0f / 12.0f) * particlePhyics->GetMass() * (dimensions.x, + dimensions.y);
+	inertiaTensor._33 = (1.0f / 12.0f) * particlePhyics->GetMass() * (dimensions.x, + dimensions.y); //inertia tensor for a cube
 	angularAcceleration = Vector3D();
 	angularVelocity = Vector3D();
 	orientation = Quaternion();
@@ -18,7 +18,7 @@ Rigidbody::~Rigidbody()
 void Rigidbody::Update(float deltaTime)
 {
 	Vector3D torque = Vector3D();
-	for (ForceAndPoint force : listOfForces) {
+	for (ForceAndPoint force : listOfForces) { //computes every force added on that frame. The forces are pairs of powers and points
 		torque += CalculateTorqueLocalPoint(force.first, force.second);
 	}
 	listOfForces.clear();
@@ -45,12 +45,14 @@ Vector3D Rigidbody::CalculateTorque(Vector3D force, Vector3D point)
 
 Vector3D Rigidbody::CalculateTorqueLocalPoint(Vector3D force, Vector3D point)
 {
+	//calculates torque when the point is already found. Used when applying rotation directly to the object, rather than as a result of contact
 	Vector3D objectPoint = point - centreOfMass;
 	return objectPoint.CrossProduct(force);
 }
 
 Vector3D Rigidbody::CalculateAngularAcceleration(Vector3D torque)
 {
+	//acceleration = inverse of inertia tensor * torque
 	XMVECTOR torqueXMVec = XMLoadFloat3(&XMFLOAT3(torque.x, torque.y, torque.z));
 	XMMATRIX inverseInertiaTensor = XMMatrixInverse(nullptr, XMLoadFloat3x3(&inertiaTensor));
 	XMVECTOR angularAccellerationXMVec = XMVector3Transform(torqueXMVec, inverseInertiaTensor);
@@ -65,7 +67,7 @@ Vector3D Rigidbody::CalculateAngularAcceleration(Vector3D torque)
 Vector3D Rigidbody::CalculateAngularVelocity(float deltaTime)
 {
 	angularVelocity = angularVelocity + (angularAcceleration * deltaTime);
-	angularVelocity *=  pow(angularDamping, deltaTime);
+	angularVelocity *=  pow(angularDamping, deltaTime); //damping^time passed - angular damping is the rotational power retained after 1 second
 	return angularVelocity;
 }
 
@@ -78,6 +80,7 @@ Quaternion Rigidbody::CalculateOrientation(float deltaTime)
 
 Vector3D Rigidbody::WorldSpaceToLocalSpace(Vector3D worldSpacePoint)
 {
+	//converts a point from world space to local, object space. This can be used when rotations are caused  by outside factors
 	XMVECTOR pointVector = XMLoadFloat3(&XMFLOAT3(worldSpacePoint.x, worldSpacePoint.y, worldSpacePoint.z));
 	XMMATRIX inverseTransformMatrix = XMMatrixInverse(nullptr, _transform->GetWorldMatrix());
 	pointVector = XMVector3Transform(pointVector, inverseTransformMatrix);

@@ -18,6 +18,9 @@
     <Filter Include="GameObject\Components">
       <UniqueIdentifier>{d9047f6b-bbeb-4e91-bac0-8ad6a1f8f226}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\Components\Collision">
+      <UniqueIdentifier>{9638fdb1-b67a-4677-863a-9a30d5623c13}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -45,6 +48,15 @@
     <ClInclude Include="Rigidbody.h">
       <Filter>GameObject\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>GameObject\Components\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="OrientedBoxCollider.h">
+      <Filter>GameObject\Components\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="SphereCollider.h">
+      <Filter>GameObject\Components\Collision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
@@ -68,6 +80,15 @@
     </ClCompile>
     <ClCompile Include="Rigidbody.cpp">
       <Filter>GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>GameObject\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="OrientedBoxCollider.cpp">
+      <Filter>GameObject\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="SphereCollider.cpp">
+      <Filter>GameObject\Components\Collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

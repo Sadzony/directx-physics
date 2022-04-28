@@ -25,11 +25,13 @@ GameObject::~GameObject()
 
 void GameObject::Update(float t)
 {
-	_particlePhysics->Update(t);
+
 	if (_type == ObjectType::Cube) {
 		_rigidbody->Update(t);
 		_transform->SetOrientation(_rigidbody->GetOrientation());
 	}
+	//update collider here
+	_particlePhysics->Update(t);
 	_transform->Update();
 }
 

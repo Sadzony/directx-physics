@@ -742,6 +742,7 @@ void Application::Update()
 	}
 	//rotate cubes
 	if (GetAsyncKeyState(0x52) && !keyPressed) { //R key
+		keyPressed = true;
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
 			if (_gameObjects[i]->GetType() == ObjectType::Cube)
