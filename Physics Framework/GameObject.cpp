@@ -1,5 +1,9 @@
 #include "GameObject.h"
 
+GameObject::GameObject(string name, ObjectType type, Transform* transform, Renderer* renderer) : _name(name), _type(type), _transform(transform), _renderer(renderer)
+{
+}
+
 GameObject::GameObject(string name, ObjectType type, Transform* transform, Renderer* renderer, ParticlePhysics* particlePhysics) : _name(name), _type(type), _transform(transform), _renderer(renderer), _particlePhysics(particlePhysics)
 {
 
@@ -15,7 +19,7 @@ GameObject::GameObject(string name, ObjectType type, Transform* transform, Rende
 
 GameObject::~GameObject()
 {
-	if (_type == ObjectType::Cube) {
+	if (_type == ObjectType::PhysicsSimulated) {
 		if (_rigidbody != nullptr) delete _rigidbody;
 	}
 	_rigidbody = nullptr;
@@ -32,12 +36,12 @@ GameObject::~GameObject()
 void GameObject::Update(float t)
 {
 
-	if (_type == ObjectType::Cube) {
+	if (_type == ObjectType::PhysicsSimulated) {
 		_rigidbody->Update(t);
 		_transform->SetOrientation(_rigidbody->GetOrientation());
+		_particlePhysics->Update(t);
 	}
 	//update collider here
-	_particlePhysics->Update(t);
 	_transform->Update();
 }
 

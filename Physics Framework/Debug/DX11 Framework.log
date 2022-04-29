@@ -1,91 +1,109 @@
-﻿  AABoxCollider.cpp
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(145,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(144,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(143,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(155,45): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(155,35): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(155,25): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(191,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(192,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(193,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(204,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(209,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(214,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Collider.h(13,36): warning C4100: 'other': unreferenced formal parameter
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\AABoxCollider.cpp(69,92): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\AABoxCollider.cpp(70,97): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\AABoxCollider.cpp(73,92): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\AABoxCollider.cpp(74,97): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\AABoxCollider.cpp(76,92): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\AABoxCollider.cpp(77,97): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-  Application.cpp
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(145,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(144,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(143,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(155,45): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(155,35): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(155,25): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(191,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(192,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(193,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(204,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(209,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(214,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Collider.h(13,36): warning C4100: 'other': unreferenced formal parameter
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(706,21): warning C4244: 'initializing': conversion from 'ULONGLONG' to 'DWORD', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(719,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(728,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(738,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(746,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(755,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(766,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(777,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(788,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(800,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(819,21): warning C4018: '<': signed/unsigned mismatch
+﻿  Application.cpp
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(145,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(144,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(143,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(155,45): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(155,35): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(155,25): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(191,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(192,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(193,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(204,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(209,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(214,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Collider.h(13,36): warning C4100: 'other': unreferenced formal parameter
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(706,21): warning C4244: 'initializing': conversion from 'ULONGLONG' to 'DWORD', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(719,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(728,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(738,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(746,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(755,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(766,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(777,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(788,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(800,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Application.cpp(819,21): warning C4018: '<': signed/unsigned mismatch
   GameObject.cpp
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(145,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(144,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(143,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(155,45): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(155,35): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(155,25): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(191,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(192,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(193,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(204,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(209,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(214,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Collider.h(13,36): warning C4100: 'other': unreferenced formal parameter
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(145,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(144,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(143,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(155,45): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(155,35): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(155,25): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(191,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(192,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(193,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(204,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(209,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(214,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Collider.h(13,36): warning C4100: 'other': unreferenced formal parameter
   Main.cpp
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(145,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(144,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(143,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(155,45): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(155,35): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(155,25): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(191,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(192,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(193,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(204,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(209,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(214,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Collider.h(13,36): warning C4100: 'other': unreferenced formal parameter
-  SphereCollider.cpp
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(145,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(144,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(143,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(155,45): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(155,35): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(155,25): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(191,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(192,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(193,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(204,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(209,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(214,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Collider.h(13,36): warning C4100: 'other': unreferenced formal parameter
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\SphereCollider.cpp(36,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(145,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(144,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(143,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(155,45): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(155,35): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(155,25): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(191,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(192,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(193,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(204,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(209,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(214,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Collider.h(13,36): warning C4100: 'other': unreferenced formal parameter
+  ParticlePhysics.cpp
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(145,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(144,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(143,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(155,45): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(155,35): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(155,25): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(191,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(192,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(193,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(204,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(209,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(214,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\ParticlePhysics.cpp(123,37): warning C4458: declaration of 'dragFactor' hides class member
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\ParticlePhysics.h(24,8): message : see declaration of 'ParticlePhysics::dragFactor'
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\ParticlePhysics.cpp(132,49): warning C4458: declaration of 'dragFactor' hides class member
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\ParticlePhysics.h(24,8): message : see declaration of 'ParticlePhysics::dragFactor'
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\ParticlePhysics.cpp(137,51): warning C4458: declaration of 'dragFactor' hides class member
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\ParticlePhysics.h(24,8): message : see declaration of 'ParticlePhysics::dragFactor'
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\ParticlePhysics.cpp(139,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\ParticlePhysics.cpp(145,44): warning C4458: declaration of 'dragFactor' hides class member
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\ParticlePhysics.h(24,8): message : see declaration of 'ParticlePhysics::dragFactor'
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\ParticlePhysics.cpp(149,36): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\ParticlePhysics.cpp(152,22): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\ParticlePhysics.cpp(155,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Rigidbody.cpp
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(145,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(144,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(143,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(155,45): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(155,35): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(155,25): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(191,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(192,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(193,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(204,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(209,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Quaternion.h(214,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Rigidbody.cpp(8,66): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Rigidbody.cpp(9,66): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Rigidbody.cpp(10,66): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Rigidbody.cpp(13,78): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Rigidbody.cpp(14,80): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Rigidbody.cpp(15,80): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Rigidbody.cpp(64,74): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Rigidbody.cpp(64,64): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Rigidbody.cpp(64,54): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Rigidbody.cpp(64): warning C4238: nonstandard extension used: class rvalue used as lvalue
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Rigidbody.cpp(64,47): warning C4238: nonstandard extension used: class rvalue used as lvalue
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Rigidbody.cpp(92,101): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Rigidbody.cpp(92,82): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Rigidbody.cpp(92,63): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Rigidbody.cpp(92): warning C4238: nonstandard extension used: class rvalue used as lvalue
+C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Rigidbody.cpp(92,47): warning C4238: nonstandard extension used: class rvalue used as lvalue
   Generating Code...
-Application.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
-  DX11 Framework.vcxproj -> C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Debug\DX11 Framework.exe
+  DX11 Framework.vcxproj -> C:\Users\s011308k\Documents\GitHub\directx-physics\Physics Framework\Debug\DX11 Framework.exe

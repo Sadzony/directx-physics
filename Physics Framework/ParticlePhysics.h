@@ -20,9 +20,12 @@ private:
 
 	Vector3D windVelocity;
 	Vector3D dimensions;
+	float radius = -1;
+	float dragFactor;
 
 public:
-	ParticlePhysics(Transform* transform, float pmass, Vector3D p_dimensions);
+	ParticlePhysics(Transform* transform, float pmass, Vector3D p_dimensions, float p_dragFactor);
+	ParticlePhysics(Transform* transform, float pmass, Vector3D p_dimensions, float p_radius, float p_dragFactor);
 	~ParticlePhysics();
 	void Update(float t);
 

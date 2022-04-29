@@ -1,11 +1,19 @@
 #include "Rigidbody.h"
 
-Rigidbody::Rigidbody(Transform* transform, ParticlePhysics* particlePhyics, Vector3D p_centreOfMass, Vector3D dimensions, float p_angularDamping) : _transform(transform), centreOfMass(p_centreOfMass), _particlePhysics(particlePhyics), angularDamping(p_angularDamping)
+Rigidbody::Rigidbody(Transform* transform, ParticlePhysics* particlePhyics, Vector3D p_centreOfMass, Vector3D p_dimensions, float p_angularDamping, bool isBall) : _transform(transform), centreOfMass(p_centreOfMass), _particlePhysics(particlePhyics), angularDamping(p_angularDamping)
 {
 	inertiaTensor = XMFLOAT3X3();
-	inertiaTensor._11 = (1.0f / 12.0f) * particlePhyics->GetMass() * (dimensions.y, + dimensions.z);
-	inertiaTensor._22 = (1.0f / 12.0f) * particlePhyics->GetMass() * (dimensions.x, + dimensions.z);
-	inertiaTensor._33 = (1.0f / 12.0f) * particlePhyics->GetMass() * (dimensions.x, + dimensions.y); //inertia tensor for a cube
+	dimensions = p_dimensions;
+	if (!isBall) {
+		inertiaTensor._11 = (1.0f / 12.0f) * particlePhyics->GetMass() * (dimensions.y, +dimensions.z);
+		inertiaTensor._22 = (1.0f / 12.0f) * particlePhyics->GetMass() * (dimensions.x, +dimensions.z);
+		inertiaTensor._33 = (1.0f / 12.0f) * particlePhyics->GetMass() * (dimensions.x, +dimensions.y); //inertia tensor for a cube
+	}
+	else {
+		inertiaTensor._11 = (2.0f/5.0f) * particlePhyics->GetMass() * dimensions.x * dimensions.x;
+		inertiaTensor._22 = (2.0f / 5.0f) * particlePhyics->GetMass() * dimensions.x * dimensions.x;
+		inertiaTensor._33 = (2.0f / 5.0f) * particlePhyics->GetMass() * dimensions.x * dimensions.x; //inertia tensor for a sphere
+	}
 	angularAcceleration = Vector3D();
 	angularVelocity = Vector3D();
 	orientation = Quaternion();

@@ -164,13 +164,12 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 	transform->SetRotation(XMConvertToRadians(90.0f), 0.0f, 0.0f);
 	Renderer* renderer = new Renderer(planeGeometry, noSpecMaterial);
 	renderer->SetTextureRV(_pGroundTextureRV);
-	ParticlePhysics* particlePhysics = new ParticlePhysics(transform, 1.0f, Vector3D(30, 30, 30));
-	particlePhysics->AllowMovement = false;
-	GameObject* gameObject = new GameObject("Floor", ObjectType::Environment, transform, renderer, particlePhysics);
+	GameObject* gameObject = new GameObject("Floor", ObjectType::Environment, transform, renderer);
 	_gameObjects.push_back(gameObject);
 
 
-
+	ParticlePhysics* particlePhysics;
+	Rigidbody* rb;
 	for (int i = 0; i < NUMBER_OF_CUBES; i++)
 	{
 		
@@ -179,10 +178,10 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 		transform->SetPosition(-6.0f + (i * 6.0f), 10.0f, 13.0f);
 		renderer = new Renderer(cubeGeometry, shinyMaterial);
 		renderer->SetTextureRV(_pTextureRV);
-		particlePhysics = new ParticlePhysics(transform, 1.0f + (i*5), Vector3D(2.0 * (i + 1), 2.0 * (i + 1), 2.0 * (i + 1)));
-		Rigidbody* rb = new Rigidbody(transform, particlePhysics, renderer->GetGeometryData().centre, Vector3D(2.0 * (i + 1), 2.0 * (i + 1), 2.0 * (i + 1)), 0.2);
+		particlePhysics = new ParticlePhysics(transform, 1.0f + (i*5), Vector3D(2.0 * (i + 1), 2.0 * (i + 1), 2.0 * (i + 1)), 1.05f);
+		rb = new Rigidbody(transform, particlePhysics, renderer->GetGeometryData().centre, Vector3D(2.0 * (i + 1), 2.0 * (i + 1), 2.0 * (i + 1)), 0.2, false);
 		AABoxCollider* collider = new AABoxCollider(transform, Vector3D(2.0 * (i + 1), 2.0 * (i + 1), 2.0*(i+1)));
-		gameObject = new GameObject("Cube" + to_string(i), ObjectType::Cube, transform, renderer, particlePhysics, rb, collider);
+		gameObject = new GameObject("Cube" + to_string(i), ObjectType::PhysicsSimulated, transform, renderer, particlePhysics, rb, collider);
 		_gameObjects.push_back(gameObject);
 	}
 
@@ -191,9 +190,10 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 	transform->SetPosition(-4.0f, 0.5f, 10.0f);
 	renderer = new Renderer(herculesGeometry, shinyMaterial);
 	renderer->SetTextureRV(_pTextureRV);
-	particlePhysics = new ParticlePhysics(transform, 1.0f, Vector3D(1.0, 1.0, 1.0));
-	particlePhysics->AllowMovement = false;
-	gameObject = new GameObject("ball", ObjectType::Environment, transform, renderer, particlePhysics);
+	particlePhysics = new ParticlePhysics(transform, 0.2f, Vector3D(1.0, 1.0, 1.0), 0.5f ,0.47f);
+	rb = new Rigidbody(transform, particlePhysics, renderer->GetGeometryData().centre, Vector3D(1.0, 1.0, 1.0), 0.8, true);
+	SphereCollider* collider = new SphereCollider(transform, 0.5f);
+	gameObject = new GameObject("ball", ObjectType::PhysicsSimulated, transform, renderer, particlePhysics, rb, collider);
 	_gameObjects.push_back(gameObject);
 
 	return S_OK;
@@ -718,7 +718,7 @@ void Application::Update()
 	{
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
-			if (_gameObjects[i]->GetType() == ObjectType::Cube && _gameObjects[i]->GetName() == "Cube0")
+			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated && _gameObjects[i]->GetName() == "Cube0")
 			{
 				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(-1, 0, 0));
 			}
@@ -727,7 +727,7 @@ void Application::Update()
 	else if (GetAsyncKeyState('2')) {
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
-			if (_gameObjects[i]->GetType() == ObjectType::Cube && _gameObjects[i]->GetName() == "Cube0")
+			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated && _gameObjects[i]->GetName() == "Cube0")
 			{
 				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(1, 0, 0));
 			}
@@ -737,7 +737,7 @@ void Application::Update()
 	{
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
-			if (_gameObjects[i]->GetType() == ObjectType::Cube && _gameObjects[i]->GetName() == "Cube1") {
+			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated && _gameObjects[i]->GetName() == "Cube1") {
 				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(-1, 0, 0));
 			}
 		}
@@ -745,7 +745,7 @@ void Application::Update()
 	else if (GetAsyncKeyState('4')) {
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
-			if (_gameObjects[i]->GetType() == ObjectType::Cube && _gameObjects[i]->GetName() == "Cube1") {
+			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated && _gameObjects[i]->GetName() == "Cube1") {
 				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(1, 0, 0));
 			}
 		}
@@ -754,21 +754,21 @@ void Application::Update()
 	if (GetAsyncKeyState(0x54)) { //T Key
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
-			if (_gameObjects[i]->GetType() == ObjectType::Cube && _gameObjects[i]->GetName() == "Cube0")
+			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated && _gameObjects[i]->GetName() == "Cube0")
 			{
 				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(0, THRUST_POWER, 0));
 			}
 		}
 	}
-	//rotate cubes
+	//rotate objects
 	if (GetAsyncKeyState(0x52) && !keyPressed) { //R key
 		keyPressed = true;
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
-			if (_gameObjects[i]->GetType() == ObjectType::Cube)
+			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated)
 			{
 				//add rotational force to front face, top edge
-				_gameObjects[i]->GetRigidbody()->AddRotationalForce(Vector3D(0, 0, ROTATIONAL_POWER), Vector3D(0.0, 0.9, 0.9));
+				_gameObjects[i]->GetRigidbody()->AddRotationalForce(Vector3D(0, 0, ROTATIONAL_POWER), Vector3D(0.0, _gameObjects[i]->GetRigidbody()->GetDimensions().y/2 - 0.1f, _gameObjects[i]->GetRigidbody()->GetDimensions().z / 2 - 0.1f));
 			}
 		}
 	}
@@ -776,10 +776,10 @@ void Application::Update()
 		keyPressed = true;
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
-			if (_gameObjects[i]->GetType() == ObjectType::Cube)
+			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated)
 			{
 				//add rotational force to front face, right edge
-				_gameObjects[i]->GetRigidbody()->AddRotationalForce(Vector3D(0, 0, ROTATIONAL_POWER), Vector3D(0.9, 0.0, 0.9));
+				_gameObjects[i]->GetRigidbody()->AddRotationalForce(Vector3D(0, 0, ROTATIONAL_POWER), Vector3D(_gameObjects[i]->GetRigidbody()->GetDimensions().x / 2 - 0.1f, 0.0, _gameObjects[i]->GetRigidbody()->GetDimensions().z / 2 - 0.1f));
 			}
 		}
 	}
@@ -787,10 +787,10 @@ void Application::Update()
 		keyPressed = true;
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
-			if (_gameObjects[i]->GetType() == ObjectType::Cube)
+			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated)
 			{
 				//add rotational force to front face, left edge
-				_gameObjects[i]->GetRigidbody()->AddRotationalForce(Vector3D(0, 0, ROTATIONAL_POWER), Vector3D(-0.9, 0.0, 0.9));
+				_gameObjects[i]->GetRigidbody()->AddRotationalForce(Vector3D(0, 0, ROTATIONAL_POWER), Vector3D(-_gameObjects[i]->GetRigidbody()->GetDimensions().x / 2 + 0.1f, 0.0, _gameObjects[i]->GetRigidbody()->GetDimensions().z / 2 - 0.1f));
 			}
 		}
 	}
@@ -799,7 +799,7 @@ void Application::Update()
 		windToggle = !windToggle;
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
-			if (_gameObjects[i]->GetType() == ObjectType::Cube)
+			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated)
 			{
 				//add wind
 				if(windToggle == true)
@@ -818,11 +818,14 @@ void Application::Update()
 		keyPressed = true;
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
-			if (_gameObjects[i]->GetType() == ObjectType::Cube)
+			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated)
 			{
 				//reset positions
 				_gameObjects[i]->GetTransform()->SetPosition(-4.0f + (i * 2.0f), 0.5, 10.0f);
-				_gameObjects[i]->GetParticlePhysics()->SetPhysicsPosition(Vector3D(-4.0f + (i * 2.0f), 0.5, 10.0f));
+				_gameObjects[i]->GetRigidbody()->SetAngularAcceleration(Vector3D());
+				_gameObjects[i]->GetRigidbody()->SetAngularVelocity(Vector3D());
+				_gameObjects[i]->GetRigidbody()->SetOrientation(Quaternion());
+				_gameObjects[i]->GetParticlePhysics()->SetPhysicsPosition(Vector3D(-4.0f + (i * 3.0f), 6.0f, 10.0f));
 			}
 		}
 	}
@@ -851,7 +854,13 @@ void Application::Update()
 	Collider* collider2 = _gameObjects[2]->GetCollider();
 	intersection = collider1->Intersects(collider2); //check if cube 0 intersects cube 1
 	if (intersection) {
-		Debug::LogString("Intersecting!");
+		Debug::LogString("Cubes Intersecting!");
+	}
+	intersection = false;
+	collider2 = _gameObjects[3]->GetCollider();
+	intersection = collider1->Intersects(collider2); //check if cube 0 intersects ball
+	if (intersection) {
+		Debug::LogString("cube and sphere Intersecting!");
 	}
 	dwTimeStart = dwTimeCur;
 	deltaTime = deltaTime - fpsConst;

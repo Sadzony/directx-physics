@@ -1,8 +1,8 @@
 #include "ParticlePhysics.h"
 
+#define PI 3.14
 
-
-ParticlePhysics::ParticlePhysics(Transform* transform, float pmass, Vector3D p_dimensions)
+ParticlePhysics::ParticlePhysics(Transform* transform, float pmass, Vector3D p_dimensions, float p_dragFactor)
 {
 	mass = pmass;
 	_transform = transform;
@@ -12,6 +12,21 @@ ParticlePhysics::ParticlePhysics(Transform* transform, float pmass, Vector3D p_d
 	windVelocity = Vector3D(0, 0, 0);
 	physicsPosition = _transform->GetPosition();
 	dimensions = p_dimensions;
+	dragFactor = p_dragFactor;
+}
+
+ParticlePhysics::ParticlePhysics(Transform* transform, float pmass, Vector3D p_dimensions, float p_radius, float p_dragFactor)
+{
+	mass = pmass;
+	_transform = transform;
+	velocity = Vector3D(0,0,0);
+	acceleration = Vector3D(0, 0, 0);
+	netForce = Vector3D(0, 0, 0);
+	windVelocity = Vector3D(0, 0, 0);
+	physicsPosition = _transform->GetPosition();
+	dimensions = p_dimensions;
+	radius = p_radius;
+	dragFactor = p_dragFactor;
 }
 
 ParticlePhysics::~ParticlePhysics()
@@ -48,8 +63,13 @@ void ParticlePhysics::Move(float t)
 {
 	physicsPosition += velocity * t + (0.5 * acceleration * t*t);
 	velocity += acceleration * t;
+	//double velocityVal = velocity.Length();
+	//Debug::LogString("Velocity: ");
+	//Debug::LogVal((float)velocityVal);
+	//Debug::LogString("\nAcceleration");                      //debug
 	//double accelerationVal = acceleration.Length();
 	//Debug::LogVal((float)accelerationVal);
+	//Debug::LogString("\n");
 	if (physicsPosition.y < GROUND_Y + dimensions.y/2 && velocity.y < 0) {
 		physicsPosition = Vector3D(physicsPosition.x, dimensions.y/2, physicsPosition.z); //find if the object hits the ground. Currently the ground is at 0.0 all over, change this when colission detection is added
 		SetVelocity(Vector3D(velocity.x, 0, velocity.z));
@@ -127,7 +147,13 @@ void ParticlePhysics::AddComplexDrag(float dragFactor, float fluidDensity, Vecto
 	//force power = 0.5 * density * relative velocity magnitude squared * area of box front face * drag coefficient
 	Vector3D relativeVelocity = fluidVelocity - velocity;
 	float relativeVelocityMagnitudeSq = relativeVelocity.LengthSq();
-	float area = 4.0f; //this is the area of a face of cube with width and length of 1
+	float area;
+	if (radius > 0) { //if the object is a sphere
+		area = PI * radius * radius;
+	}
+	else { //if the object is a cube
+		area = dimensions.x * dimensions.x; //this is the area of a face of cube
+	}
 	float forcePower;
 	if (velocity.Length() < LAMINAR_MAX_SPEED) { //to calculate laminar flow, square root the length. For turbulent flow, use the squared value
 		forcePower = 0.5f * fluidDensity * sqrt(relativeVelocityMagnitudeSq) * area * dragFactor;
@@ -147,7 +173,10 @@ void ParticlePhysics::UpdateNetForce()
 	if (_transform->GetPosition().y > GROUND_Y + dimensions.y / 2) {
 		this->AddWeightForce();
 	}
-	AddComplexDrag(DRAG_FACTOR, 1.225f, windVelocity); //add drag with no wind, and the density of air
+	else {
+		//add friction here
+	}
+	AddComplexDrag(dragFactor, 1.225f, windVelocity); //add drag with no wind, and the density of air
 	for each (Vector3D force in externalForces)
 	{
 		netForce += force;

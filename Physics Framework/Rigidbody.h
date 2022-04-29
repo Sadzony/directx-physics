@@ -18,8 +18,9 @@ private:
 	Vector3D angularAcceleration;
 	Vector3D angularVelocity;
 	Quaternion orientation;
+	Vector3D dimensions;
 public:
-	Rigidbody(Transform* transform, ParticlePhysics* particlePhysics, Vector3D centreOfMass, Vector3D dimensions, float p_angularDamping);
+	Rigidbody(Transform* transform, ParticlePhysics* particlePhysics, Vector3D centreOfMass, Vector3D p_dimensions, float p_angularDamping, bool isBall);
 	~Rigidbody();
 	void Update(float deltaTime);
 	void AddRotationalForce(Vector3D force, Vector3D point);
@@ -35,6 +36,7 @@ public:
 
 	void SetDamping(float p_damping) { angularDamping = p_damping; }
 
+	Vector3D GetDimensions() { return dimensions; }
 
 private:
 	Vector3D CalculateTorque(Vector3D force, Vector3D point);

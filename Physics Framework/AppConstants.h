@@ -13,6 +13,5 @@
 
 //drag
 #define LAMINAR_MAX_SPEED 15.0f
-#define DRAG_FACTOR 0.3f
 
 #define WIND_VELOCITY Vector3D(2.0, 0.0, 0.0)

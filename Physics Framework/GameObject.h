@@ -17,12 +17,13 @@ using namespace std;
 
 enum class ObjectType {
 	Environment,
-	Cube
+	PhysicsSimulated
 };
 
 class GameObject
 {
 public:
+	GameObject(string name, ObjectType type, Transform* transform, Renderer* renderer);
 	GameObject(string name, ObjectType type, Transform* transform, Renderer* renderer, ParticlePhysics* particlePhysics);
 	GameObject(string name, ObjectType type, Transform* transform, Renderer* renderer, ParticlePhysics* particlePhysics, Rigidbody* rigidbody);
 	GameObject(string name, ObjectType type, Transform* transform, Renderer* renderer, ParticlePhysics* particlePhysics, Rigidbody* rigidbody, Collider* collider);
