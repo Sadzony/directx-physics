@@ -51,10 +51,13 @@
     <ClInclude Include="Collider.h">
       <Filter>GameObject\Components\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="OrientedBoxCollider.h">
+    <ClInclude Include="AABoxCollider.h">
       <Filter>GameObject\Components\Collision</Filter>
     </ClInclude>
     <ClInclude Include="SphereCollider.h">
+      <Filter>GameObject\Components\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderList.h">
       <Filter>GameObject\Components\Collision</Filter>
     </ClInclude>
   </ItemGroup>
@@ -81,10 +84,7 @@
     <ClCompile Include="Rigidbody.cpp">
       <Filter>GameObject\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Collider.cpp">
-      <Filter>GameObject\Components\Collision</Filter>
-    </ClCompile>
-    <ClCompile Include="OrientedBoxCollider.cpp">
+    <ClCompile Include="AABoxCollider.cpp">
       <Filter>GameObject\Components\Collision</Filter>
     </ClCompile>
     <ClCompile Include="SphereCollider.cpp">

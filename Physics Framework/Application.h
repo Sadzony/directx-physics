@@ -134,6 +134,7 @@ private:
 	ID3D11RasterizerState* CWcullMode;
 
 	bool keyPressed = false;
+	bool windToggle = false;
 
 private:
 	HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow);

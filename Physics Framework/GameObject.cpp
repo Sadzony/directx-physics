@@ -9,6 +9,10 @@ GameObject::GameObject(string name, ObjectType type, Transform* transform, Rende
 
 }
 
+GameObject::GameObject(string name, ObjectType type, Transform* transform, Renderer* renderer, ParticlePhysics* particlePhysics, Rigidbody* rigidbody, Collider* collider) : _name(name), _type(type), _transform(transform), _renderer(renderer), _particlePhysics(particlePhysics), _rigidbody(rigidbody), _collider(collider)
+{
+}
+
 GameObject::~GameObject()
 {
 	if (_type == ObjectType::Cube) {
@@ -21,6 +25,8 @@ GameObject::~GameObject()
 	_renderer = nullptr;
 	if (_transform != nullptr)delete _transform;
 	_transform = nullptr;
+	if (_collider != nullptr)delete _collider;
+	_collider = nullptr;
 }
 
 void GameObject::Update(float t)

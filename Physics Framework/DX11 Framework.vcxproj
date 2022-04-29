@@ -372,13 +372,12 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="DDSTextureLoader.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="OBJLoader.cpp" />
-    <ClCompile Include="OrientedBoxCollider.cpp" />
+    <ClCompile Include="AABoxCollider.cpp" />
     <ClCompile Include="ParticlePhysics.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
@@ -396,13 +395,14 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="ColliderList.h" />
     <ClInclude Include="customMath.h" />
     <ClInclude Include="DDSTextureLoader.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="AppConstants.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="OBJLoader.h" />
-    <ClInclude Include="OrientedBoxCollider.h" />
+    <ClInclude Include="AABoxCollider.h" />
     <ClInclude Include="ParticlePhysics.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="Renderer.h" />

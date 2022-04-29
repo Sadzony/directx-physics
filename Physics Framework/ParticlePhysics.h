@@ -18,8 +18,11 @@ private:
 
 	bool useConstVelocity;
 
+	Vector3D windVelocity;
+	Vector3D dimensions;
+
 public:
-	ParticlePhysics(Transform* transform, float pmass);
+	ParticlePhysics(Transform* transform, float pmass, Vector3D p_dimensions);
 	~ParticlePhysics();
 	void Update(float t);
 
@@ -44,6 +47,12 @@ public:
 	void AddComplexDrag(float dragFactor, float fluidDensity, Vector3D fluidVelocity);
 	Vector3D calcLaminarFlow(float dragFactor);
 	Vector3D calcTurbulentFlow(float dragFactor);
+
+	Vector3D GetWindVelocity() { return windVelocity;  }
+	void SetWindVelocity(Vector3D p_windVelocity) { windVelocity = p_windVelocity; }
+
+	Vector3D GetPhysicsPosition() { return physicsPosition; }
+	void SetPhysicsPosition(Vector3D p_position) { physicsPosition = p_position; }
 
 	void Move(float t);
 

@@ -9,6 +9,7 @@
 #include "ParticlePhysics.h"
 #include "Renderer.h"
 #include "Rigidbody.h"
+#include "ColliderList.h"
 
 using namespace DirectX;
 using namespace std;
@@ -24,6 +25,7 @@ class GameObject
 public:
 	GameObject(string name, ObjectType type, Transform* transform, Renderer* renderer, ParticlePhysics* particlePhysics);
 	GameObject(string name, ObjectType type, Transform* transform, Renderer* renderer, ParticlePhysics* particlePhysics, Rigidbody* rigidbody);
+	GameObject(string name, ObjectType type, Transform* transform, Renderer* renderer, ParticlePhysics* particlePhysics, Rigidbody* rigidbody, Collider* collider);
 	~GameObject();
 	ObjectType GetType() const { return _type; }
 	string GetName() const { return _name; }
@@ -32,6 +34,7 @@ public:
 	Renderer* GetRenderer() const { return _renderer; }
 	ParticlePhysics* GetParticlePhysics() const { return _particlePhysics; }
 	Rigidbody* GetRigidbody() const { return _rigidbody; }
+	Collider* GetCollider() const { return _collider; }
 
 	void Update(float t);
 	void Draw(ID3D11DeviceContext* pImmediateContext);
@@ -41,6 +44,7 @@ private:
 	Renderer* _renderer;
 	ParticlePhysics* _particlePhysics;
 	Rigidbody* _rigidbody;
+	Collider* _collider;
 	string _name;
 	ObjectType _type;
 };

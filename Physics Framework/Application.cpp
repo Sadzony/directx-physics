@@ -120,7 +120,7 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 	basicLight.LightVecW = XMFLOAT3(0.0f, 1.0f, -1.0f);
 
 	Geometry herculesGeometry;
-	objMeshData = OBJLoader::Load("donut.obj", _pd3dDevice);
+	objMeshData = OBJLoader::Load("sphere.obj", _pd3dDevice);
 	herculesGeometry.indexBuffer = objMeshData.IndexBuffer;
 	herculesGeometry.numberOfIndices = objMeshData.IndexCount;
 	herculesGeometry.centre = Vector3D(objMeshData.centre.x, objMeshData.centre.y, objMeshData.centre.z);
@@ -159,39 +159,42 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 
 	
 	Transform* transform = new Transform();
-	transform->SetPosition(0.0f, 0.0f, 0.0f);
+	transform->SetPosition(0.0f, 0.0f, 13.0f);
 	transform->SetScale(15.0f, 15.0f, 15.0f);
 	transform->SetRotation(XMConvertToRadians(90.0f), 0.0f, 0.0f);
 	Renderer* renderer = new Renderer(planeGeometry, noSpecMaterial);
 	renderer->SetTextureRV(_pGroundTextureRV);
-	ParticlePhysics* particlePhysics = new ParticlePhysics(transform, 1.0f);
+	ParticlePhysics* particlePhysics = new ParticlePhysics(transform, 1.0f, Vector3D(30, 30, 30));
 	particlePhysics->AllowMovement = false;
 	GameObject* gameObject = new GameObject("Floor", ObjectType::Environment, transform, renderer, particlePhysics);
 	_gameObjects.push_back(gameObject);
+
+
+
+	for (int i = 0; i < NUMBER_OF_CUBES; i++)
+	{
+		
+		transform = new Transform();
+		transform->SetScale(1.0f * (i + 1), 1.0f * (i + 1), 1.0f*(i+1));
+		transform->SetPosition(-6.0f + (i * 6.0f), 10.0f, 13.0f);
+		renderer = new Renderer(cubeGeometry, shinyMaterial);
+		renderer->SetTextureRV(_pTextureRV);
+		particlePhysics = new ParticlePhysics(transform, 1.0f + (i*5), Vector3D(2.0 * (i + 1), 2.0 * (i + 1), 2.0 * (i + 1)));
+		Rigidbody* rb = new Rigidbody(transform, particlePhysics, renderer->GetGeometryData().centre, Vector3D(2.0 * (i + 1), 2.0 * (i + 1), 2.0 * (i + 1)), 0.2);
+		AABoxCollider* collider = new AABoxCollider(transform, Vector3D(2.0 * (i + 1), 2.0 * (i + 1), 2.0*(i+1)));
+		gameObject = new GameObject("Cube" + to_string(i), ObjectType::Cube, transform, renderer, particlePhysics, rb, collider);
+		_gameObjects.push_back(gameObject);
+	}
 
 	transform = new Transform();
 	transform->SetScale(0.5f, 0.5f, 0.5f);
 	transform->SetPosition(-4.0f, 0.5f, 10.0f);
 	renderer = new Renderer(herculesGeometry, shinyMaterial);
 	renderer->SetTextureRV(_pTextureRV);
-	particlePhysics = new ParticlePhysics(transform, 1.0f);
+	particlePhysics = new ParticlePhysics(transform, 1.0f, Vector3D(1.0, 1.0, 1.0));
 	particlePhysics->AllowMovement = false;
-	gameObject = new GameObject("donut", ObjectType::Environment, transform, renderer, particlePhysics);
+	gameObject = new GameObject("ball", ObjectType::Environment, transform, renderer, particlePhysics);
 	_gameObjects.push_back(gameObject);
-
-	for (int i = 0; i < NUMBER_OF_CUBES; i++)
-	{
-		
-		transform = new Transform();
-		transform->SetScale(0.5f, 0.5f, 0.5f);
-		transform->SetPosition(-4.0f + (i * 2.0f), 10.0f, 10.0f);
-		renderer = new Renderer(cubeGeometry, shinyMaterial);
-		renderer->SetTextureRV(_pTextureRV);
-		particlePhysics = new ParticlePhysics(transform, 1.0f);
-		Rigidbody* rb = new Rigidbody(transform, particlePhysics, renderer->GetGeometryData().centre, Vector3D(2.0, 2.0, 2.0), 0.1);
-		gameObject = new GameObject("Cube" + to_string(i), ObjectType::Cube, transform, renderer, particlePhysics, rb);
-		_gameObjects.push_back(gameObject);
-	}
 
 	return S_OK;
 }
@@ -715,7 +718,7 @@ void Application::Update()
 	{
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
-			if (_gameObjects[i]->GetType() == ObjectType::Cube)
+			if (_gameObjects[i]->GetType() == ObjectType::Cube && _gameObjects[i]->GetName() == "Cube0")
 			{
 				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(-1, 0, 0));
 			}
@@ -724,8 +727,25 @@ void Application::Update()
 	else if (GetAsyncKeyState('2')) {
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
-			if (_gameObjects[i]->GetType() == ObjectType::Cube)
+			if (_gameObjects[i]->GetType() == ObjectType::Cube && _gameObjects[i]->GetName() == "Cube0")
 			{
+				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(1, 0, 0));
+			}
+		}
+	}
+	if (GetAsyncKeyState('3'))
+	{
+		for (int i = 0; i < _gameObjects.size(); i++)
+		{
+			if (_gameObjects[i]->GetType() == ObjectType::Cube && _gameObjects[i]->GetName() == "Cube1") {
+				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(-1, 0, 0));
+			}
+		}
+	}
+	else if (GetAsyncKeyState('4')) {
+		for (int i = 0; i < _gameObjects.size(); i++)
+		{
+			if (_gameObjects[i]->GetType() == ObjectType::Cube && _gameObjects[i]->GetName() == "Cube1") {
 				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(1, 0, 0));
 			}
 		}
@@ -734,7 +754,7 @@ void Application::Update()
 	if (GetAsyncKeyState(0x54)) { //T Key
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
-			if (_gameObjects[i]->GetType() == ObjectType::Cube)
+			if (_gameObjects[i]->GetType() == ObjectType::Cube && _gameObjects[i]->GetName() == "Cube0")
 			{
 				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(0, THRUST_POWER, 0));
 			}
@@ -747,11 +767,66 @@ void Application::Update()
 		{
 			if (_gameObjects[i]->GetType() == ObjectType::Cube)
 			{
+				//add rotational force to front face, top edge
 				_gameObjects[i]->GetRigidbody()->AddRotationalForce(Vector3D(0, 0, ROTATIONAL_POWER), Vector3D(0.0, 0.9, 0.9));
 			}
 		}
 	}
-	else if (!GetAsyncKeyState(0x52)) {
+	else if (GetAsyncKeyState(0x46) && !keyPressed) { //F key
+		keyPressed = true;
+		for (int i = 0; i < _gameObjects.size(); i++)
+		{
+			if (_gameObjects[i]->GetType() == ObjectType::Cube)
+			{
+				//add rotational force to front face, right edge
+				_gameObjects[i]->GetRigidbody()->AddRotationalForce(Vector3D(0, 0, ROTATIONAL_POWER), Vector3D(0.9, 0.0, 0.9));
+			}
+		}
+	}
+	else if (GetAsyncKeyState(0x45) && !keyPressed) { //E key
+		keyPressed = true;
+		for (int i = 0; i < _gameObjects.size(); i++)
+		{
+			if (_gameObjects[i]->GetType() == ObjectType::Cube)
+			{
+				//add rotational force to front face, left edge
+				_gameObjects[i]->GetRigidbody()->AddRotationalForce(Vector3D(0, 0, ROTATIONAL_POWER), Vector3D(-0.9, 0.0, 0.9));
+			}
+		}
+	}
+	else if (GetAsyncKeyState(0x57) && !keyPressed) { //W key
+		keyPressed = true;
+		windToggle = !windToggle;
+		for (int i = 0; i < _gameObjects.size(); i++)
+		{
+			if (_gameObjects[i]->GetType() == ObjectType::Cube)
+			{
+				//add wind
+				if(windToggle == true)
+				{
+					_gameObjects[i]->GetParticlePhysics()->SetWindVelocity(WIND_VELOCITY);
+				}
+				else 
+				{
+					_gameObjects[i]->GetParticlePhysics()->SetWindVelocity(Vector3D(0,0,0));
+				}
+				
+			}
+		}
+	}
+	else if (GetAsyncKeyState(0x53) && !keyPressed) { //s key
+		keyPressed = true;
+		for (int i = 0; i < _gameObjects.size(); i++)
+		{
+			if (_gameObjects[i]->GetType() == ObjectType::Cube)
+			{
+				//reset positions
+				_gameObjects[i]->GetTransform()->SetPosition(-4.0f + (i * 2.0f), 0.5, 10.0f);
+				_gameObjects[i]->GetParticlePhysics()->SetPhysicsPosition(Vector3D(-4.0f + (i * 2.0f), 0.5, 10.0f));
+			}
+		}
+	}
+	else if (!GetAsyncKeyState(0x52) && !GetAsyncKeyState(0x46) && !GetAsyncKeyState(0x45) && !GetAsyncKeyState(0x57) && !GetAsyncKeyState(0x53)) {
 		keyPressed = false;
 	}
 	// Update camera
@@ -771,7 +846,13 @@ void Application::Update()
 	{
 		gameObject->Update(deltaTime);
 	}
-
+	bool intersection = false;
+	Collider* collider1 = _gameObjects[1]->GetCollider();
+	Collider* collider2 = _gameObjects[2]->GetCollider();
+	intersection = collider1->Intersects(collider2); //check if cube 0 intersects cube 1
+	if (intersection) {
+		Debug::LogString("Intersecting!");
+	}
 	dwTimeStart = dwTimeCur;
 	deltaTime = deltaTime - fpsConst;
 }
