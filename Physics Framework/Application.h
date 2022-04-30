@@ -135,6 +135,7 @@ private:
 
 	bool keyPressed = false;
 	bool windToggle = false;
+	bool collisionResolutionToggle = false;
 
 private:
 	HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow);

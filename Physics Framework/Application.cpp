@@ -180,20 +180,31 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 		renderer->SetTextureRV(_pTextureRV);
 		particlePhysics = new ParticlePhysics(transform, 1.0f + (i*5), Vector3D(2.0 * (i + 1), 2.0 * (i + 1), 2.0 * (i + 1)), 1.05f);
 		rb = new Rigidbody(transform, particlePhysics, renderer->GetGeometryData().centre, Vector3D(2.0 * (i + 1), 2.0 * (i + 1), 2.0 * (i + 1)), 0.2, false);
-		AABoxCollider* collider = new AABoxCollider(transform, Vector3D(2.0 * (i + 1), 2.0 * (i + 1), 2.0*(i+1)));
+		AABoxCollider* collider = new AABoxCollider(transform, Vector3D(2.0 * (i + 1), 2.0 * (i + 1), 2.0*(i+1)), particlePhysics);
 		gameObject = new GameObject("Cube" + to_string(i), ObjectType::PhysicsSimulated, transform, renderer, particlePhysics, rb, collider);
 		_gameObjects.push_back(gameObject);
 	}
 
 	transform = new Transform();
 	transform->SetScale(0.5f, 0.5f, 0.5f);
-	transform->SetPosition(-4.0f, 0.5f, 10.0f);
+	transform->SetPosition(-4.0f, 10.0f, 13.0f);
 	renderer = new Renderer(herculesGeometry, shinyMaterial);
 	renderer->SetTextureRV(_pTextureRV);
 	particlePhysics = new ParticlePhysics(transform, 0.2f, Vector3D(1.0, 1.0, 1.0), 0.5f ,0.47f);
 	rb = new Rigidbody(transform, particlePhysics, renderer->GetGeometryData().centre, Vector3D(1.0, 1.0, 1.0), 0.8, true);
-	SphereCollider* collider = new SphereCollider(transform, 0.5f);
+	SphereCollider* collider = new SphereCollider(transform, 0.5f, particlePhysics);
 	gameObject = new GameObject("ball", ObjectType::PhysicsSimulated, transform, renderer, particlePhysics, rb, collider);
+	_gameObjects.push_back(gameObject);
+
+	transform = new Transform();
+	transform->SetScale(2.0f, 2.0f, 2.0f);
+	transform->SetPosition(10.0f, 10.0f, 13.0f);
+	renderer = new Renderer(herculesGeometry, shinyMaterial);
+	renderer->SetTextureRV(_pTextureRV);
+	particlePhysics = new ParticlePhysics(transform, 4.0f, Vector3D(4.0, 4.0, 4.0), 2.0f, 0.47f);
+	rb = new Rigidbody(transform, particlePhysics, renderer->GetGeometryData().centre, Vector3D(4.0, 4.0, 4.0), 0.8, true);
+	collider = new SphereCollider(transform, 2.0f, particlePhysics);
+	gameObject = new GameObject("ball2", ObjectType::PhysicsSimulated, transform, renderer, particlePhysics, rb, collider);
 	_gameObjects.push_back(gameObject);
 
 	return S_OK;
@@ -720,7 +731,7 @@ void Application::Update()
 		{
 			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated && _gameObjects[i]->GetName() == "Cube0")
 			{
-				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(-1, 0, 0));
+				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(-6, 0, 0));
 			}
 		}
 	}
@@ -729,7 +740,7 @@ void Application::Update()
 		{
 			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated && _gameObjects[i]->GetName() == "Cube0")
 			{
-				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(1, 0, 0));
+				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(6, 0, 0));
 			}
 		}
 	}
@@ -738,7 +749,7 @@ void Application::Update()
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
 			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated && _gameObjects[i]->GetName() == "Cube1") {
-				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(-1, 0, 0));
+				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(-10, 0, 0));
 			}
 		}
 	}
@@ -746,7 +757,41 @@ void Application::Update()
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
 			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated && _gameObjects[i]->GetName() == "Cube1") {
-				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(1, 0, 0));
+				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(10, 0, 0));
+			}
+		}
+	}
+	if (GetAsyncKeyState('5'))
+	{
+		for (int i = 0; i < _gameObjects.size(); i++)
+		{
+			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated && _gameObjects[i]->GetName() == "ball") {
+				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(-1.2, 0, 0));
+			}
+		}
+	}
+	else if (GetAsyncKeyState('6')) {
+		for (int i = 0; i < _gameObjects.size(); i++)
+		{
+			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated && _gameObjects[i]->GetName() == "ball") {
+				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(1.2, 0, 0));
+			}
+		}
+	}
+	if (GetAsyncKeyState('7'))
+	{
+		for (int i = 0; i < _gameObjects.size(); i++)
+		{
+			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated && _gameObjects[i]->GetName() == "ball2") {
+				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(-10, 0, 0));
+			}
+		}
+	}
+	else if (GetAsyncKeyState('8')) {
+		for (int i = 0; i < _gameObjects.size(); i++)
+		{
+			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated && _gameObjects[i]->GetName() == "ball2") {
+				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(10, 0, 0));
 			}
 		}
 	}
@@ -757,6 +802,24 @@ void Application::Update()
 			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated && _gameObjects[i]->GetName() == "Cube0")
 			{
 				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(0, THRUST_POWER, 0));
+			}
+		}
+	}
+	if (GetAsyncKeyState(0x59)) { //Y Key
+		for (int i = 0; i < _gameObjects.size(); i++)
+		{
+			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated && _gameObjects[i]->GetName() == "ball")
+			{
+				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(0, THRUST_POWER, 0));
+			}
+		}
+	}
+	if (GetAsyncKeyState(0x48)) { //H Key
+		for (int i = 0; i < _gameObjects.size(); i++)
+		{
+			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated && (_gameObjects[i]->GetName() == "ball2" || _gameObjects[i]->GetName() == "Cube1"))
+			{
+				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(0, THRUST_POWER*5, 0));
 			}
 		}
 	}
@@ -821,15 +884,19 @@ void Application::Update()
 			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated)
 			{
 				//reset positions
-				_gameObjects[i]->GetTransform()->SetPosition(-4.0f + (i * 2.0f), 0.5, 10.0f);
+				_gameObjects[i]->GetTransform()->SetPosition(-9.0f + (i * 4.5f), 13.0f, 13.0f);
 				_gameObjects[i]->GetRigidbody()->SetAngularAcceleration(Vector3D());
 				_gameObjects[i]->GetRigidbody()->SetAngularVelocity(Vector3D());
 				_gameObjects[i]->GetRigidbody()->SetOrientation(Quaternion());
-				_gameObjects[i]->GetParticlePhysics()->SetPhysicsPosition(Vector3D(-4.0f + (i * 3.0f), 6.0f, 10.0f));
+				_gameObjects[i]->GetParticlePhysics()->SetPhysicsPosition(Vector3D(-9.0f + (i * 4.5f), 13.0f, 13.0f));
 			}
 		}
 	}
-	else if (!GetAsyncKeyState(0x52) && !GetAsyncKeyState(0x46) && !GetAsyncKeyState(0x45) && !GetAsyncKeyState(0x57) && !GetAsyncKeyState(0x53)) {
+	else if (GetAsyncKeyState(0x43) && !keyPressed) { //C key
+		keyPressed = true;
+		collisionResolutionToggle = !collisionResolutionToggle;
+	}
+	else if (!GetAsyncKeyState(0x52) && !GetAsyncKeyState(0x46) && !GetAsyncKeyState(0x45) && !GetAsyncKeyState(0x57) && !GetAsyncKeyState(0x53) && !GetAsyncKeyState(0x43)) {
 		keyPressed = false;
 	}
 	// Update camera
@@ -849,18 +916,38 @@ void Application::Update()
 	{
 		gameObject->Update(deltaTime);
 	}
-	bool intersection = false;
-	Collider* collider1 = _gameObjects[1]->GetCollider();
-	Collider* collider2 = _gameObjects[2]->GetCollider();
-	intersection = collider1->Intersects(collider2); //check if cube 0 intersects cube 1
-	if (intersection) {
-		Debug::LogString("Cubes Intersecting!");
+	if (!collisionResolutionToggle) {
+		bool intersection = false;
+		Collider* collider1 = _gameObjects[1]->GetCollider();
+		Collider* collider2 = _gameObjects[2]->GetCollider();
+		intersection = collider1->Intersects(collider2); //check if cube 0 intersects cube 1
+		if (intersection) {
+			Debug::LogString("Cubes Intersecting!\n");
+		}
+		intersection = false;
+		collider2 = _gameObjects[3]->GetCollider();
+		intersection = collider1->Intersects(collider2); //check if cube 0 intersects ball
+		if (intersection) {
+			Debug::LogString("cube and sphere Intersecting!\n");
+		}
+		intersection = false;
+		collider1 = _gameObjects[4]->GetCollider();
+		intersection = collider1->Intersects(collider2); //check if ball intersects ball2
+		if (intersection) {
+			Debug::LogString("sphere and sphere Intersecting!\n");
+		}
 	}
-	intersection = false;
-	collider2 = _gameObjects[3]->GetCollider();
-	intersection = collider1->Intersects(collider2); //check if cube 0 intersects ball
-	if (intersection) {
-		Debug::LogString("cube and sphere Intersecting!");
+	else {
+		for (auto gameObject : _gameObjects)
+		{
+			if (gameObject->GetType() == ObjectType::PhysicsSimulated) {
+				for (auto gameObjectOther : _gameObjects) {
+					if (gameObjectOther->GetType() == ObjectType::PhysicsSimulated) {
+						gameObject->GetCollider()->ResolveCollision(gameObjectOther->GetCollider());
+					}
+				}
+			}
+		}
 	}
 	dwTimeStart = dwTimeCur;
 	deltaTime = deltaTime - fpsConst;

@@ -1,9 +1,10 @@
 #include "SphereCollider.h"
 #include "AABoxCollider.h"
-SphereCollider::SphereCollider(Transform* p_transform, float p_radius)
+SphereCollider::SphereCollider(Transform* p_transform, float p_radius, ParticlePhysics* p_particlePhysics)
 {
 	m_type = ColliderFlag::SphereCollider;
 	transform = p_transform;
+	particlePhysics = p_particlePhysics;
 	radius = p_radius;
 }
 
@@ -42,4 +43,29 @@ bool SphereCollider::IntersectsSphere(SphereCollider* thisCol, SphereCollider* o
 		return false;
 	}
 
+}
+
+void SphereCollider::ResolveCollision(Collider* other)
+{
+	if (other->GetType() == ColliderFlag::SphereCollider)
+	{
+		SphereCollider* otherSphere = dynamic_cast<SphereCollider*>(other);
+		ResolveCollisionSphere(this, otherSphere);
+	}
+	else if (other->GetType() == ColliderFlag::AABoxCollider)
+	{
+		AABoxCollider* otherBox = dynamic_cast<AABoxCollider*>(other);
+		ResolveCollisionBox(this, otherBox);
+	}
+}
+
+void SphereCollider::ResolveCollisionBox(SphereCollider* thisCol, AABoxCollider* other)
+{
+	//box and sphere implemented in box, call on box function
+	other->ResolveCollisionSphere(other, thisCol);
+}
+
+void SphereCollider::ResolveCollisionSphere(SphereCollider* thisCol, SphereCollider* other)
+{
+	//resolve sphere to sphere collision
 }

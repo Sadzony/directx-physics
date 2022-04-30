@@ -1,5 +1,6 @@
 #pragma once
 #include "Transform.h"
+#include "ParticlePhysics.h"
 enum class ColliderFlag {
 	ColliderBase,
 	SphereCollider,
@@ -8,11 +9,13 @@ enum class ColliderFlag {
 class Collider
 {
 public:
-	Collider() { transform = nullptr; m_type = ColliderFlag::ColliderBase; }
-	Collider(Transform* p_transform) { transform = p_transform; m_type = ColliderFlag::ColliderBase; }
+	Collider() { transform = nullptr; particlePhysics = nullptr; m_type = ColliderFlag::ColliderBase; }
+	Collider(Transform* p_transform, ParticlePhysics* p_particlePhysics) { transform = p_transform; particlePhysics = p_particlePhysics; m_type = ColliderFlag::ColliderBase; }
 	virtual bool Intersects(Collider* other) { return false; }
+	virtual void ResolveCollision(Collider* other) { ; }
 	ColliderFlag GetType() { return m_type; }
 	Transform* transform;
+	ParticlePhysics* particlePhysics;
 	ColliderFlag m_type;
 };
 

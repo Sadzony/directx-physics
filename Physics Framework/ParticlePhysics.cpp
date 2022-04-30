@@ -63,7 +63,7 @@ void ParticlePhysics::Move(float t)
 {
 	physicsPosition += velocity * t + (0.5 * acceleration * t*t);
 	velocity += acceleration * t;
-	//double velocityVal = velocity.Length();
+	double velocityVal = velocity.Length();
 	//Debug::LogString("Velocity: ");
 	//Debug::LogVal((float)velocityVal);
 	//Debug::LogString("\nAcceleration");                      //debug
@@ -170,13 +170,17 @@ void ParticlePhysics::AddComplexDrag(float dragFactor, float fluidDensity, Vecto
 
 void ParticlePhysics::UpdateNetForce()
 {
+	
 	if (_transform->GetPosition().y > GROUND_Y + dimensions.y / 2) {
 		this->AddWeightForce();
 	}
 	else {
-		//add friction here
+		//friction
+		Vector3D direction = Vector3D(velocity.x, 0, velocity.z).Normalized() * -1; //opposite direction to the velocity. ignore the y 
+		double power = FRICTION_COEFFICIENT * (-1.0 * mass * GRAVITY_FACTOR); //friction power = coefficient * magnitude of normal vector. Since the normal vector is facing up, and equal to the weight force, it will be weight force * -1
+		this->AddForce(direction * power);
 	}
-	AddComplexDrag(dragFactor, 1.225f, windVelocity); //add drag with no wind, and the density of air
+	AddComplexDrag(dragFactor, 1.225f, windVelocity); //add drag with wind velocity, and the density of air
 	for each (Vector3D force in externalForces)
 	{
 		netForce += force;
