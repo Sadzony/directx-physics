@@ -17,5 +17,13 @@ public:
 	Transform* transform;
 	ParticlePhysics* particlePhysics;
 	ColliderFlag m_type;
+
+	std::vector<Collider*> collidersToCheck;
+	void AddColliderToChecklist(Collider* coll) { if(coll != this) collidersToCheck.push_back(coll); }
+	virtual void Update() {
+		for (auto coll : collidersToCheck) {
+			ResolveCollision(coll);
+		}
+	}
 };
 

@@ -41,7 +41,18 @@ void GameObject::Update(float t)
 		_transform->SetOrientation(_rigidbody->GetOrientation());
 		_particlePhysics->Update(t);
 	}
-	//update collider here
+	_transform->Update();
+}
+
+void GameObject::UpdateWithCollider(float t)
+{
+	if (_type == ObjectType::PhysicsSimulated) {
+		_rigidbody->Update(t);
+		_transform->SetOrientation(_rigidbody->GetOrientation());
+		_particlePhysics->Update(t);
+		_collider->Update();
+		_particlePhysics->UpdateToGround();
+	}
 	_transform->Update();
 }
 

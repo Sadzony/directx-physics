@@ -1,5 +1,6 @@
 #pragma once
 #include "Collider.h"
+#include <algorithm>
 class SphereCollider;
 class AABoxCollider :
     public Collider

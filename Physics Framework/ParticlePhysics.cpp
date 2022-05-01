@@ -9,6 +9,7 @@ ParticlePhysics::ParticlePhysics(Transform* transform, float pmass, Vector3D p_d
 	velocity = Vector3D(0,0,0);
 	acceleration = Vector3D(0, 0, 0);
 	netForce = Vector3D(0, 0, 0);
+	lastNetForce = netForce;
 	windVelocity = Vector3D(0, 0, 0);
 	physicsPosition = _transform->GetPosition();
 	dimensions = p_dimensions;
@@ -70,11 +71,19 @@ void ParticlePhysics::Move(float t)
 	//double accelerationVal = acceleration.Length();
 	//Debug::LogVal((float)accelerationVal);
 	//Debug::LogString("\n");
-	if (physicsPosition.y < GROUND_Y + dimensions.y/2 && velocity.y < 0) {
-		physicsPosition = Vector3D(physicsPosition.x, dimensions.y/2, physicsPosition.z); //find if the object hits the ground. Currently the ground is at 0.0 all over, change this when colission detection is added
-		SetVelocity(Vector3D(velocity.x, 0, velocity.z));
-		SetAcceleration(Vector3D(acceleration.x, 0, acceleration.z));
+	UpdateToGround();
+}
+
+void ParticlePhysics::UpdateToGround()
+{
+	if (physicsPosition.y < GROUND_Y + dimensions.y / 2) {
+		physicsPosition = Vector3D(physicsPosition.x, dimensions.y / 2, physicsPosition.z); //find if the object hits the ground and update its position up
+		if (velocity.y < 0) { //if the object is still falling, reset the acceleration and velocity
+			SetVelocity(Vector3D(velocity.x, 0, velocity.z));
+			SetAcceleration(Vector3D(acceleration.x, 0, acceleration.z));
+		}
 	}
+	_transform->SetPosition(physicsPosition);
 }
 
 Vector3D ParticlePhysics::GetAcceleration()
@@ -85,6 +94,7 @@ Vector3D ParticlePhysics::GetAcceleration()
 void ParticlePhysics::UpdateAcceleration()
 {
 	acceleration = netForce / mass;
+	lastNetForce = netForce;
 	netForce = Vector3D();
 }
 
@@ -104,9 +114,34 @@ void ParticlePhysics::AddWeightForce()
 	this->AddForce(force);
 }
 
-void ParticlePhysics::AddNormalForce()
+void ParticlePhysics::AddNormalForce(Vector3D direction)
 {
 	//find the normal force when colliding with another object
+
+
+	direction.Normalize();
+
+	//use newtons second law F = m * a for any axis that the object is trying to move into
+	if ((lastNetForce.x > 0 && direction.x < 0) || (lastNetForce.x < 0 && direction.x > 0))
+	{
+		direction.x *= abs(lastNetForce.x);
+		SetVelocity(Vector3D(0, velocity.y, velocity.z));
+		SetAcceleration(Vector3D(0, acceleration.y, acceleration.z));
+	}
+	if ((lastNetForce.y > 0 && direction.y < 0) || (lastNetForce.y < 0 && direction.y > 0))
+	{
+		direction.y *= abs(lastNetForce.y);
+		SetVelocity(Vector3D(velocity.x, 0, velocity.z));
+		SetAcceleration(Vector3D(acceleration.x, 0, acceleration.z));
+	}
+	if ((lastNetForce.z > 0 && direction.z < 0) || (lastNetForce.z < 0 && direction.z > 0))
+	{
+		direction.z *= abs(lastNetForce.z);
+		SetVelocity(Vector3D(velocity.x, velocity.y, 0));
+		SetAcceleration(Vector3D(acceleration.x, acceleration.y, 0));
+	}
+	AddForce(direction);
+
 }
 
 void ParticlePhysics::AddForce(Vector3D force)

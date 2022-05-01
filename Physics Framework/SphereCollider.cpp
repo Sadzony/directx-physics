@@ -68,4 +68,30 @@ void SphereCollider::ResolveCollisionBox(SphereCollider* thisCol, AABoxCollider*
 void SphereCollider::ResolveCollisionSphere(SphereCollider* thisCol, SphereCollider* other)
 {
 	//resolve sphere to sphere collision
+	Vector3D collisionNormal = other->transform->GetPosition() - thisCol->transform->GetPosition();
+	double distance = collisionNormal.Length();
+	double sumOfRadii = (double)thisCol->radius + (double)other->radius;
+	if (distance < sumOfRadii) { //if intersecting
+
+
+		//find how much theyre intersecting
+		double penetrationDepth = sumOfRadii - distance;
+
+		double thisColMoveAmount = penetrationDepth * (other->particlePhysics->GetMass() / (thisCol->particlePhysics->GetMass() + other->particlePhysics->GetMass())); 
+		double otherColMoveAmount = penetrationDepth * (thisCol->particlePhysics->GetMass() / (thisCol->particlePhysics->GetMass() + other->particlePhysics->GetMass()));
+
+		//move this object back and other object forward
+		collisionNormal.Normalize();
+		thisCol->particlePhysics->AddNormalForce(collisionNormal * -1);
+		other->particlePhysics->AddNormalForce(collisionNormal);
+		Vector3D thisColMoveVector = -1 * collisionNormal * thisColMoveAmount;
+		Vector3D otherColMoveVector = collisionNormal * otherColMoveAmount;
+
+		//apply the position update to both objects transform and particle physics
+		thisCol->transform->SetPosition(thisCol->transform->GetPosition() + thisColMoveVector);
+		other->transform->SetPosition(other->transform->GetPosition() + otherColMoveVector);
+
+		thisCol->particlePhysics->SetPhysicsPosition(thisCol->particlePhysics->GetPhysicsPosition() + thisColMoveVector);
+		other->particlePhysics->SetPhysicsPosition(other->particlePhysics->GetPhysicsPosition() + otherColMoveVector);
+	}
 }

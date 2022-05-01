@@ -207,6 +207,19 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 	gameObject = new GameObject("ball2", ObjectType::PhysicsSimulated, transform, renderer, particlePhysics, rb, collider);
 	_gameObjects.push_back(gameObject);
 
+	for (auto curGameObject : _gameObjects) 
+	{
+		if (curGameObject->GetType() == ObjectType::PhysicsSimulated) {
+			for (auto otherGameObject : _gameObjects) 
+			{
+				if (otherGameObject->GetType() == ObjectType::PhysicsSimulated) 
+				{
+					curGameObject->GetCollider()->AddColliderToChecklist(otherGameObject->GetCollider());
+				}
+			}
+		}
+	}
+
 	return S_OK;
 }
 
@@ -749,7 +762,7 @@ void Application::Update()
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
 			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated && _gameObjects[i]->GetName() == "Cube1") {
-				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(-10, 0, 0));
+				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(-15, 0, 0));
 			}
 		}
 	}
@@ -757,7 +770,7 @@ void Application::Update()
 		for (int i = 0; i < _gameObjects.size(); i++)
 		{
 			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated && _gameObjects[i]->GetName() == "Cube1") {
-				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(10, 0, 0));
+				_gameObjects[i]->GetParticlePhysics()->AddForce(Vector3D(15, 0, 0));
 			}
 		}
 	}
@@ -853,7 +866,7 @@ void Application::Update()
 			if (_gameObjects[i]->GetType() == ObjectType::PhysicsSimulated)
 			{
 				//add rotational force to front face, left edge
-				_gameObjects[i]->GetRigidbody()->AddRotationalForce(Vector3D(0, 0, ROTATIONAL_POWER), Vector3D(-_gameObjects[i]->GetRigidbody()->GetDimensions().x / 2 + 0.1f, 0.0, _gameObjects[i]->GetRigidbody()->GetDimensions().z / 2 - 0.1f));
+				_gameObjects[i]->GetRigidbody()->AddRotationalForce(Vector3D(0, 0, ROTATIONAL_POWER), Vector3D(-(_gameObjects[i]->GetRigidbody()->GetDimensions().x / 2 - 0.1f), 0.0, _gameObjects[i]->GetRigidbody()->GetDimensions().z / 2 - 0.1f));
 			}
 		}
 	}
@@ -914,7 +927,12 @@ void Application::Update()
 	// Update objects
 	for (auto gameObject : _gameObjects)
 	{
-		gameObject->Update(deltaTime);
+		if (collisionResolutionToggle && gameObject->GetType() == ObjectType::PhysicsSimulated) {
+			gameObject->UpdateWithCollider(deltaTime);
+		}
+		else {
+			gameObject->Update(deltaTime);
+		}
 	}
 	if (!collisionResolutionToggle) {
 		bool intersection = false;
@@ -935,18 +953,6 @@ void Application::Update()
 		intersection = collider1->Intersects(collider2); //check if ball intersects ball2
 		if (intersection) {
 			Debug::LogString("sphere and sphere Intersecting!\n");
-		}
-	}
-	else {
-		for (auto gameObject : _gameObjects)
-		{
-			if (gameObject->GetType() == ObjectType::PhysicsSimulated) {
-				for (auto gameObjectOther : _gameObjects) {
-					if (gameObjectOther->GetType() == ObjectType::PhysicsSimulated) {
-						gameObject->GetCollider()->ResolveCollision(gameObjectOther->GetCollider());
-					}
-				}
-			}
 		}
 	}
 	dwTimeStart = dwTimeCur;

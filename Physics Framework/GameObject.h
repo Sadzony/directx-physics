@@ -38,6 +38,7 @@ public:
 	Collider* GetCollider() const { return _collider; }
 
 	void Update(float t);
+	void UpdateWithCollider(float t);
 	void Draw(ID3D11DeviceContext* pImmediateContext);
 
 private:

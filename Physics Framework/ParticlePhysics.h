@@ -14,6 +14,7 @@ private:
 	Vector3D acceleration;
 
 	Vector3D netForce;
+	Vector3D lastNetForce;
 	std::vector<Vector3D> externalForces;
 
 	bool useConstVelocity;
@@ -40,7 +41,7 @@ public:
 	float GetMass();
 
 	void AddWeightForce();
-	void AddNormalForce();
+	void AddNormalForce(Vector3D direction);
 
 	void AddForce(Vector3D force);
 	Vector3D GetNetForce();
@@ -58,6 +59,7 @@ public:
 	void SetPhysicsPosition(Vector3D p_position) { physicsPosition = p_position; }
 
 	void Move(float t);
+	void UpdateToGround();
 
 	bool AllowMovement = true;
 };

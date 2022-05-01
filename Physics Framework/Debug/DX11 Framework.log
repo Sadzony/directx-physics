@@ -1,4 +1,4 @@
-﻿  Application.cpp
+﻿  ParticlePhysics.cpp
 C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(145,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
 C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(144,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
 C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(143,13): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
@@ -11,23 +11,17 @@ C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion
 C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(204,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
 C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(209,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
 C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Quaternion.h(214,68): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Collider.h(14,36): warning C4100: 'other': unreferenced formal parameter
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Collider.h(15,42): warning C4100: 'other': unreferenced formal parameter
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(717,21): warning C4244: 'initializing': conversion from 'ULONGLONG' to 'DWORD', possible loss of data
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(730,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(739,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(749,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(757,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(766,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(774,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(783,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(791,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(800,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(809,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(818,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(829,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(840,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(851,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(863,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Application.cpp(882,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\ParticlePhysics.cpp(67,9): warning C4189: 'velocityVal': local variable is initialized but not referenced
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\ParticlePhysics.cpp(158,37): warning C4458: declaration of 'dragFactor' hides class member
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\ParticlePhysics.h(25,8): message : see declaration of 'ParticlePhysics::dragFactor'
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\ParticlePhysics.cpp(167,49): warning C4458: declaration of 'dragFactor' hides class member
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\ParticlePhysics.h(25,8): message : see declaration of 'ParticlePhysics::dragFactor'
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\ParticlePhysics.cpp(172,51): warning C4458: declaration of 'dragFactor' hides class member
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\ParticlePhysics.h(25,8): message : see declaration of 'ParticlePhysics::dragFactor'
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\ParticlePhysics.cpp(174,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\ParticlePhysics.cpp(180,44): warning C4458: declaration of 'dragFactor' hides class member
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\ParticlePhysics.h(25,8): message : see declaration of 'ParticlePhysics::dragFactor'
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\ParticlePhysics.cpp(184,36): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\ParticlePhysics.cpp(187,22): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\ParticlePhysics.cpp(190,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   DX11 Framework.vcxproj -> C:\Users\szymo\Programming\graphics\directx-physics\Physics Framework\Debug\DX11 Framework.exe
